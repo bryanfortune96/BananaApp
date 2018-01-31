@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MapTrafficDetailsViewController" customModule="Banana" customModuleProvider="target">
+            <connections>
+                <outlet property="distanceLb" destination="efb-T1-JpG" id="Pxi-qB-AQV"/>
+                <outlet property="mapView" destination="fzF-RI-GJq" id="9U6-VX-3L5"/>
+                <outlet property="view" destination="uGT-F1-N8q" id="iDH-H8-Ytx"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="uGT-F1-N8q">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fzF-RI-GJq" customClass="GMSMapView">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="efb-T1-JpG">
+                    <rect key="frame" x="83" y="45" width="282" height="25.5"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
+                    <color key="textColor" red="0.0" green="0.092628903364197546" blue="0.71296296296296291" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KBi-wj-FlC">
+                    <rect key="frame" x="15" y="40" width="38" height="38"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="38" id="8ef-sn-1dB"/>
+                        <constraint firstAttribute="width" constant="38" id="zlw-d9-9jr"/>
+                    </constraints>
+                    <state key="normal" image="cancelBlack_button"/>
+                    <connections>
+                        <action selector="cancelPressed:" destination="-1" eventType="touchUpInside" id="PKc-8u-lii"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="fzF-RI-GJq" firstAttribute="leading" secondItem="uGT-F1-N8q" secondAttribute="leading" id="0rQ-ov-4WV"/>
+                <constraint firstAttribute="trailing" secondItem="fzF-RI-GJq" secondAttribute="trailing" id="4Wi-82-9ct"/>
+                <constraint firstAttribute="bottom" secondItem="fzF-RI-GJq" secondAttribute="bottom" id="NcB-ot-7U9"/>
+                <constraint firstItem="KBi-wj-FlC" firstAttribute="top" secondItem="eI9-9w-AyU" secondAttribute="top" constant="20" id="TKi-qG-M8l"/>
+                <constraint firstItem="efb-T1-JpG" firstAttribute="leading" secondItem="KBi-wj-FlC" secondAttribute="trailing" constant="30" id="TU5-QV-9XP"/>
+                <constraint firstItem="KBi-wj-FlC" firstAttribute="leading" secondItem="eI9-9w-AyU" secondAttribute="leading" constant="15" id="WaU-Xm-90c"/>
+                <constraint firstItem="efb-T1-JpG" firstAttribute="top" secondItem="eI9-9w-AyU" secondAttribute="top" constant="25" id="cMH-8l-FPp"/>
+                <constraint firstItem="eI9-9w-AyU" firstAttribute="trailing" secondItem="efb-T1-JpG" secondAttribute="trailing" constant="10" id="iAU-er-uj3"/>
+                <constraint firstItem="fzF-RI-GJq" firstAttribute="top" secondItem="uGT-F1-N8q" secondAttribute="top" id="wXO-Xc-be0"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="eI9-9w-AyU"/>
+            <point key="canvasLocation" x="33.5" y="54.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="cancelBlack_button" width="21" height="21"/>
+    </resources>
+</document>

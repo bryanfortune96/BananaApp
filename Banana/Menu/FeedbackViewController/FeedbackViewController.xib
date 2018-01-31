@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FeedbackViewController" customModule="Banana" customModuleProvider="target">
+            <connections>
+                <outlet property="sendButt" destination="SXs-Cw-rHh" id="9SO-jL-Bez"/>
+                <outlet property="textField" destination="u62-kl-ecz" id="5mn-9m-OoW"/>
+                <outlet property="view" destination="QeI-TI-HCp" id="CJF-oL-mfE"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="QeI-TI-HCp">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4g4-bt-uW2" userLabel="topView">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="90"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hWO-l5-Bae" userLabel="backButt">
+                            <rect key="frame" x="20" y="27" width="30" height="35"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="30" id="8hY-QS-iHG"/>
+                                <constraint firstAttribute="height" constant="35" id="e7g-E6-VNy"/>
+                            </constraints>
+                            <state key="normal" image="cancel_button"/>
+                            <connections>
+                                <action selector="backPressed:" destination="-1" eventType="touchUpInside" id="Wmb-TI-E4e"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Feedback" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.64999997615814209" translatesAutoresizingMaskIntoConstraints="NO" id="Bhd-Hp-hk9">
+                            <rect key="frame" x="139" y="32" width="97" height="26"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.56470588239999997" green="0.53725490200000003" blue="0.91372549020000005" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="hWO-l5-Bae" firstAttribute="leading" secondItem="4g4-bt-uW2" secondAttribute="leading" constant="20" id="25D-sK-wrC"/>
+                        <constraint firstItem="hWO-l5-Bae" firstAttribute="centerY" secondItem="4g4-bt-uW2" secondAttribute="centerY" id="3ba-Nr-EO7"/>
+                        <constraint firstAttribute="width" secondItem="4g4-bt-uW2" secondAttribute="height" multiplier="375:90" id="OSx-jH-qvj"/>
+                        <constraint firstItem="Bhd-Hp-hk9" firstAttribute="centerX" secondItem="4g4-bt-uW2" secondAttribute="centerX" id="mcS-dR-Anu"/>
+                        <constraint firstItem="Bhd-Hp-hk9" firstAttribute="centerY" secondItem="4g4-bt-uW2" secondAttribute="centerY" id="zhl-Ub-tjZ"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tell us what you think to improve our app" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WVu-XV-7Dt">
+                    <rect key="frame" x="27" y="127" width="321" height="55"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="321" id="m4h-Zs-3TG"/>
+                        <constraint firstAttribute="height" constant="55" id="w2Y-kb-n8o"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                    <color key="textColor" red="0.56470588239999997" green="0.53725490200000003" blue="0.91372549020000005" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" borderStyle="line" placeholder="Your Feedback" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="u62-kl-ecz">
+                    <rect key="frame" x="27" y="205" width="321" height="278"/>
+                    <color key="backgroundColor" red="0.93918049910000001" green="0.94612868569999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SXs-Cw-rHh">
+                    <rect key="frame" x="160" y="514" width="55" height="55"/>
+                    <color key="backgroundColor" red="0.56470588239999997" green="0.53725490200000003" blue="0.91372549020000005" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="55" id="3x7-X3-AK3"/>
+                        <constraint firstAttribute="width" constant="55" id="XJt-A5-MYZ"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                    <state key="normal" title="Send">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="sendPressed:" destination="-1" eventType="touchUpInside" id="U6d-S2-FNb"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="WVu-XV-7Dt" firstAttribute="leading" secondItem="CcS-aj-lpr" secondAttribute="leading" constant="27" id="5iv-9o-PFa"/>
+                <constraint firstItem="CcS-aj-lpr" firstAttribute="bottom" secondItem="SXs-Cw-rHh" secondAttribute="bottom" constant="98" id="7HS-ii-nM3"/>
+                <constraint firstItem="4g4-bt-uW2" firstAttribute="trailing" secondItem="CcS-aj-lpr" secondAttribute="trailing" id="8aX-SP-Qml"/>
+                <constraint firstItem="u62-kl-ecz" firstAttribute="top" secondItem="WVu-XV-7Dt" secondAttribute="bottom" constant="23" id="9oh-yK-K9r"/>
+                <constraint firstItem="SXs-Cw-rHh" firstAttribute="centerX" secondItem="CcS-aj-lpr" secondAttribute="centerX" id="D1A-vd-PxV"/>
+                <constraint firstItem="CcS-aj-lpr" firstAttribute="trailing" secondItem="WVu-XV-7Dt" secondAttribute="trailing" constant="27" id="FaI-FD-Ox2"/>
+                <constraint firstItem="4g4-bt-uW2" firstAttribute="top" secondItem="QeI-TI-HCp" secondAttribute="top" id="Ilb-IY-Df0"/>
+                <constraint firstItem="WVu-XV-7Dt" firstAttribute="top" secondItem="4g4-bt-uW2" secondAttribute="bottom" constant="37" id="KZQ-F9-dic"/>
+                <constraint firstItem="4g4-bt-uW2" firstAttribute="centerX" secondItem="QeI-TI-HCp" secondAttribute="centerX" id="Uze-lD-iby"/>
+                <constraint firstItem="4g4-bt-uW2" firstAttribute="leading" secondItem="CcS-aj-lpr" secondAttribute="leading" id="bB1-jz-obV"/>
+                <constraint firstItem="SXs-Cw-rHh" firstAttribute="top" secondItem="u62-kl-ecz" secondAttribute="bottom" constant="31" id="bmD-F8-nfp"/>
+                <constraint firstItem="4g4-bt-uW2" firstAttribute="width" secondItem="QeI-TI-HCp" secondAttribute="width" id="eVp-QM-ZnG"/>
+                <constraint firstItem="CcS-aj-lpr" firstAttribute="trailing" secondItem="u62-kl-ecz" secondAttribute="trailing" constant="27" id="rsp-5l-zU7"/>
+                <constraint firstItem="u62-kl-ecz" firstAttribute="leading" secondItem="CcS-aj-lpr" secondAttribute="leading" constant="27" id="rvb-IJ-NfG"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="CcS-aj-lpr"/>
+            <point key="canvasLocation" x="-224" y="16"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="cancel_button" width="16" height="16"/>
+    </resources>
+</document>
