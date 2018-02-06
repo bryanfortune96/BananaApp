@@ -105,6 +105,7 @@ enum BananaRouter: URLRequestConvertible {
             //url = URL(string: (baseServerURL as NSString).appendingPathComponent(path))!
             break;
         }
+
         var urlRequest = URLRequest(url: url!)
         urlRequest.httpMethod = method.rawValue
         urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")

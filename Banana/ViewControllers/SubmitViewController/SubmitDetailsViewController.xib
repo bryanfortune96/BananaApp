@@ -35,39 +35,6 @@
                     <rect key="frame" x="45" y="101" width="285" height="526"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
-                <view hidden="YES" alpha="0.59999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R0n-HC-Cr5" userLabel="blackView">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="677"/>
-                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i20-vF-rLl" userLabel="pickerUIView">
-                    <rect key="frame" x="73.5" y="229.5" width="228" height="228"/>
-                    <subviews>
-                        <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="abo-yr-3AO">
-                            <rect key="frame" x="0.0" y="0.0" width="228" height="186"/>
-                        </pickerView>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1kF-SZ-nF3">
-                            <rect key="frame" x="88" y="176" width="53" height="38"/>
-                            <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
-                            <state key="normal" title="Chọn">
-                                <color key="titleColor" red="0.87450980389999999" green="0.46274509800000002" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
-                            </state>
-                            <connections>
-                                <action selector="choosePressed:" destination="-1" eventType="touchUpInside" id="7Dh-wH-m2n"/>
-                            </connections>
-                        </button>
-                    </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstItem="1kF-SZ-nF3" firstAttribute="top" secondItem="abo-yr-3AO" secondAttribute="bottom" constant="-10" id="21H-hz-tiW"/>
-                        <constraint firstItem="abo-yr-3AO" firstAttribute="centerX" secondItem="i20-vF-rLl" secondAttribute="centerX" id="ATi-GI-y3I"/>
-                        <constraint firstAttribute="width" secondItem="i20-vF-rLl" secondAttribute="height" multiplier="95:95" id="RWp-GQ-7Ng"/>
-                        <constraint firstAttribute="bottom" secondItem="abo-yr-3AO" secondAttribute="bottom" constant="42" id="Tft-CN-iqn"/>
-                        <constraint firstItem="1kF-SZ-nF3" firstAttribute="centerX" secondItem="i20-vF-rLl" secondAttribute="centerX" id="dkd-fP-iGc"/>
-                        <constraint firstItem="abo-yr-3AO" firstAttribute="top" secondItem="i20-vF-rLl" secondAttribute="top" id="ggN-dT-NL0"/>
-                        <constraint firstAttribute="trailing" secondItem="abo-yr-3AO" secondAttribute="trailing" id="gjU-LW-lFd"/>
-                        <constraint firstItem="abo-yr-3AO" firstAttribute="leading" secondItem="i20-vF-rLl" secondAttribute="leading" id="w3a-6v-EDj"/>
-                    </constraints>
-                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CH5-vz-iPg" userLabel="topView">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="181"/>
                     <subviews>
@@ -207,6 +174,39 @@
                         <constraint firstItem="kDk-mi-aBs" firstAttribute="leading" secondItem="Bf6-25-hNJ" secondAttribute="leading" id="WHg-3T-5ez"/>
                         <constraint firstAttribute="bottom" secondItem="kDk-mi-aBs" secondAttribute="bottom" constant="7" id="Xoc-EN-RFB"/>
                         <constraint firstItem="uPw-Gv-U8a" firstAttribute="top" secondItem="f2V-rp-TTT" secondAttribute="bottom" id="kP1-ik-etQ"/>
+                    </constraints>
+                </view>
+                <view hidden="YES" alpha="0.59999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R0n-HC-Cr5" userLabel="blackView">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="677"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i20-vF-rLl" userLabel="pickerUIView">
+                    <rect key="frame" x="73" y="229" width="228" height="228"/>
+                    <subviews>
+                        <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="abo-yr-3AO">
+                            <rect key="frame" x="0.0" y="0.0" width="228" height="186"/>
+                        </pickerView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1kF-SZ-nF3">
+                            <rect key="frame" x="88" y="176" width="53" height="38"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
+                            <state key="normal" title="Chọn">
+                                <color key="titleColor" red="0.87450980389999999" green="0.46274509800000002" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="choosePressed:" destination="-1" eventType="touchUpInside" id="7Dh-wH-m2n"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="1kF-SZ-nF3" firstAttribute="top" secondItem="abo-yr-3AO" secondAttribute="bottom" constant="-10" id="21H-hz-tiW"/>
+                        <constraint firstItem="abo-yr-3AO" firstAttribute="centerX" secondItem="i20-vF-rLl" secondAttribute="centerX" id="ATi-GI-y3I"/>
+                        <constraint firstAttribute="width" secondItem="i20-vF-rLl" secondAttribute="height" multiplier="95:95" id="RWp-GQ-7Ng"/>
+                        <constraint firstAttribute="bottom" secondItem="abo-yr-3AO" secondAttribute="bottom" constant="42" id="Tft-CN-iqn"/>
+                        <constraint firstItem="1kF-SZ-nF3" firstAttribute="centerX" secondItem="i20-vF-rLl" secondAttribute="centerX" id="dkd-fP-iGc"/>
+                        <constraint firstItem="abo-yr-3AO" firstAttribute="top" secondItem="i20-vF-rLl" secondAttribute="top" id="ggN-dT-NL0"/>
+                        <constraint firstAttribute="trailing" secondItem="abo-yr-3AO" secondAttribute="trailing" id="gjU-LW-lFd"/>
+                        <constraint firstItem="abo-yr-3AO" firstAttribute="leading" secondItem="i20-vF-rLl" secondAttribute="leading" id="w3a-6v-EDj"/>
                     </constraints>
                 </view>
             </subviews>

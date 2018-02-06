@@ -9,8 +9,6 @@
 import Bolts
 
 class BananaServiceRest: BaseService, BananaServiceProtocol {
-    
-    
 
     func Register(param: Dictionary<String, Any>) -> BFTask<AnyObject> {
         return self.makeRequest(request: BananaRouter.Register(param: param), returnType: RegisterResponse.self, isArrayResponse: false, showLoading: true).task
@@ -29,6 +27,7 @@ class BananaServiceRest: BaseService, BananaServiceProtocol {
     
     func PostEvent(param: Dictionary<String, Any>,token: String) -> BFTask<AnyObject> {
         return self.makeRequest(request: BananaRouter.PostEvent(param: param,token: token), returnType: PostEventResponse.self, isArrayResponse: false, showLoading: true).task
+        
     }
     
     func UpdateUser(param: Dictionary<String, Any>,token: String,userID: String) -> BFTask<AnyObject> {

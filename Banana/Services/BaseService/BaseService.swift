@@ -20,5 +20,9 @@ open class BaseService: NSObject, BaseServiceProtocol {
         return self.doRequest(request: request, returnType: returnType, isArrayResponse: isArrayResponse,showLoading: showLoading)
     }
     
+    func makeRequestWithFormData<T>(data: Data, param: [String: Any], request: URLRequestConvertible, returnType: T.Type, isArrayResponse: Bool, showLoading: Bool = true) -> MyRequest where T : Mappable {
+        return self.doRequestWithDataForm(data: data, param: param, request: request, returnType: returnType, isArrayResponse: isArrayResponse)
+    }
+    
 }
 

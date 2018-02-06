@@ -459,6 +459,8 @@ class HomeViewController: BaseViewController,UITableViewDelegate,UITableViewData
     }
     
     func getUserLocation() {
+        blackView2.isHidden = true
+        alertView.isHidden = true
         // Ask for Authorisation from the User.
         self.locationManager.requestAlwaysAuthorization()
         
