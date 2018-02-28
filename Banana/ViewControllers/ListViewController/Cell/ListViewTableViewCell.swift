@@ -25,6 +25,7 @@ class ListViewTableViewCell: UITableViewCell {
     @IBOutlet weak var rainIcon: UIImageView!
     @IBOutlet weak var floodIcon: UIImageView!
     var id: String?
+    var trafficInfo: EventDetailsObject?
     
     var delegate: VotingDelegate?
     
@@ -45,23 +46,33 @@ class ListViewTableViewCell: UITableViewCell {
     }
     
     @IBAction func upPressed(_ sender: Any) {
-        let tintedImage = #imageLiteral(resourceName: "up1_icon").withRenderingMode(.alwaysTemplate)
-        upButt.setImage(tintedImage, for: .normal)
-        upButt.tintColor = Colors.appReversedColor
-        delegate?.vote(isUp: true, id: id!)
+        if (trafficInfo?.isUpvoted)! {
+            upButt.setImage(#imageLiteral(resourceName: "up1_icon"), for: .normal)
+        } else {
+            upButt.setImage(#imageLiteral(resourceName: "up1_reversed_icon"), for: .normal)
+        }
+        downButt.setImage(#imageLiteral(resourceName: "down1_icon"), for: .normal)
+        self.delegate?.vote(isUp: true, id: (trafficInfo?.id)!)
+        
     }
     
     @IBAction func downPressed(_ sender: Any) {
-        let tintedImage = #imageLiteral(resourceName: "down1_icon").withRenderingMode(.alwaysTemplate)
-        downButt.setImage(tintedImage, for: .normal)
-        downButt.tintColor = Colors.appReversedColor
-        delegate?.vote(isUp: false, id: id!)
+        if (trafficInfo?.isDownvoted)! {
+            downButt.setImage(#imageLiteral(resourceName: "down1_icon"), for: .normal)
+        } else {
+            downButt.setImage(#imageLiteral(resourceName: "down1_reversed_icon"), for: .normal)
+        }
+        upButt.setImage(#imageLiteral(resourceName: "up1_icon"), for: .normal)
+        self.delegate?.vote(isUp: false, id: (trafficInfo?.id)!)
+        
     }
-    
-
     
     func populate(trafficInfo: EventDetailsObject)
     {
+        downButt.setImage(#imageLiteral(resourceName: "down1_icon"), for: .normal)
+        upButt.setImage(#imageLiteral(resourceName: "up1_icon"), for: .normal)
+        
+        self.trafficInfo = trafficInfo
         id = trafficInfo.id
         titleLb.text = "\((trafficInfo.name)!)                   "
         
@@ -75,6 +86,15 @@ class ListViewTableViewCell: UITableViewCell {
         let time = Helpers.timeAgoSinceDate(date: date as! NSDate, numericDates: false)
         let point = (trafficInfo.point?.upVotes)! - (trafficInfo.point?.downVotes)!
         infoLb.text = "\(time) | \(point) points"
+        
+        if trafficInfo.isUpvoted! {
+            upButt.setImage(#imageLiteral(resourceName: "up1_reversed_icon"), for: .normal)
+            downButt.setImage(#imageLiteral(resourceName: "down1_icon"), for: .normal)
+        } else if trafficInfo.isDownvoted! {
+            downButt.setImage(#imageLiteral(resourceName: "down1_reversed_icon"), for: .normal)
+            upButt.setImage(#imageLiteral(resourceName: "up1_icon"), for: .normal)
+        }
+        
         if trafficInfo.isAccident!
         {
             accidentIcon.isHidden = false
@@ -105,9 +125,4 @@ class ListViewTableViewCell: UITableViewCell {
             jamIcon.image = #imageLiteral(resourceName: "superHeavyJam_icon")
         }
     }
-    
-    
-    
-    
-    
 }

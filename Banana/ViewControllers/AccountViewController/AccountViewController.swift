@@ -26,13 +26,16 @@ class AccountViewController: BaseViewController {
     @IBOutlet weak var shadowView: UIView!
     @IBOutlet weak var saveButtConstraint: NSLayoutConstraint!
     
-    var avatarImage: UIImage?
+    var avatarImage: UIImage? {
+        didSet {
+            self.saveButt.isEnabled = true
+        }
+    }
     var userInfo: UsersObject?
     var passwordChanged = false
     var isChangingPassword = false
     var updateUserResponse: UpdateUserResponse? {
         didSet{
-            self.hideLoading()
             if (updateUserResponse?.success)! {
                 UserDefaults.standard.set(updateUserResponse?.data?.address, forKey: "Address")
                 UserDefaults.standard.set(updateUserResponse?.data?.email, forKey: "Email")
@@ -46,7 +49,14 @@ class AccountViewController: BaseViewController {
                     ServiceHelpers.updatePassword(param: param, token: token!, userID: userID!, callback: {(response) in
                             self.updatePassResponse = response
                     })
+                } else if self.avatarImage != nil {
+                    let token = UserDefaults.standard.string(forKey: "Token")
+                    let userID = UserDefaults.standard.string(forKey: "UserID")
+//                    imageResponse = FormDataServiceHelpers.postAvatar(data: UIImageJPEGRepresentation(self.avatarImage!, 0.7)!, userID: userID!, token: token!)
+//                    FormDataServiceHelpers.postAvatar(data: UIImageJPEGRepresentation(self.avatarImage!, 0.7)!, userID: userID!, token: token!)
+                    self.postAvatar(data: UIImageJPEGRepresentation(self.avatarImage!, 0.7)!, userID: userID!, token: token!)
                 } else {
+                    self.hideLoading()
                     self.showSuccess()
                 }
             } else {
@@ -56,19 +66,38 @@ class AccountViewController: BaseViewController {
             }
         }
     }
+    
     var updatePassResponse: UpdatePasswordResponse? {
-        didSet{
-            self.hideLoading()
+        didSet {
             if !(updatePassResponse?.success)! {
                 let alert = UIAlertController(title: "Warning!", message: updatePassResponse?.message, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
+            } else if self.avatarImage != nil {
+                let token = UserDefaults.standard.string(forKey: "Token")
+                let userID = UserDefaults.standard.string(forKey: "UserID")
+//                imageResponse = FormDataServiceHelpers.postAvatar(data: UIImageJPEGRepresentation(self.avatarImage!, 0.7)!, userID: userID!, token: token!)
+                self.postAvatar(data: UIImageJPEGRepresentation(self.avatarImage!, 0.7)!, userID: userID!, token: token!)
             } else {
+                self.hideLoading()
                 self.showSuccess()
             }
         }
-            
     }
+    
+//    var imageResponse: [String: Any] = [String: Any]() {
+//        didSet {
+//            if imageResponse.count != 0 {
+//                self.hideLoading()
+//                if imageResponse["code"] as? Int == 200 {
+//                    self.showSuccess()
+//                } else {
+//                    self.showAlert(message: imageResponse["message"] as! String)
+//                }
+//            }
+//
+//        }
+//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -131,7 +160,11 @@ class AccountViewController: BaseViewController {
     
     func loadData() {
         self.pointsRankLb.text = "\(String(describing: (userInfo?.point)!)) points | \(DataMgr.shared.levels[(userInfo?.level)!])"
-        imageView.image = #imageLiteral(resourceName: "user")
+        if userInfo?.avatarImgPath != "" {
+            self.imageView.sd_setImage(with: URL(string: (userInfo?.avatarImgPath)!), completed: nil)
+        } else {
+            imageView.image = #imageLiteral(resourceName: "user")
+        }
         userNameLb.text = UserDefaults.standard.string(forKey: "UserName") != "" ? UserDefaults.standard.string(forKey: "UserName") : "User"
 
         emailTxtField.text = UserDefaults.standard.string(forKey: "Email")
@@ -149,8 +182,40 @@ class AccountViewController: BaseViewController {
         
     }
     
+    func postAvatar(data: Data, userID: String, token: String)  {
+        let URL = "https://bananaserver.herokuapp.com/user/avatar/" + userID
+        let request = try! URLRequest(url: URL, method: .put, headers: ["Content-Type": "application/x-www-form-urlencoded","Authorization": token])
+        
+        Alamofire.upload(multipartFormData: { MultipartFormData in
+            let filename = "photo.jpeg"
+            MultipartFormData.append(data, withName: "image", fileName: filename, mimeType: "image/jpeg")
+        },
+                         with: request,
+                         encodingCompletion: { (result) in
+                            switch result {
+                            case .success(let upload, _, _):
+                                upload.responseJSON { response in
+                                    let value = response.result.value as! [String: Any]
+                                    print(value)
+                                    self.hideLoading()
+                                    self.showSuccess()
+                                }
+                                
+                            case .failure( _):
+                                self.hideLoading()
+                                self.showAlert(message: "Could not connect to server")
+                            }
+        })
+    }
+    
     func showSuccess() {
         let alert = UIAlertController(title: "Chú ý", message: "Cập nhật thông tin thành công!", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func showAlert(message: String) {
+        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
@@ -176,6 +241,7 @@ class AccountViewController: BaseViewController {
             self.showLoading()
             let token = UserDefaults.standard.string(forKey: "Token")
             let userID = UserDefaults.standard.string(forKey: "UserID")
+            
 
             let param = ["nickname": self.userNameTxtField.text!,"phone": self.phoneTxtField.text!,"address": self.addressTxtField.text!]
             ServiceHelpers.updateUser(param: param, token: token!, userID: userID!, callback:
@@ -183,6 +249,7 @@ class AccountViewController: BaseViewController {
                 (response) in
                     self.updateUserResponse = response
             })
+            
         }))
         alert.addAction(UIAlertAction(title: "Hủy", style: UIAlertActionStyle.cancel, handler: nil))
         
@@ -195,6 +262,7 @@ class AccountViewController: BaseViewController {
     }
     
     @objc func avatarChange() {
+        
         let alert = UIAlertController(title: "", message: nil, preferredStyle: .actionSheet)
         
         // Change Message With Color and Font

@@ -64,14 +64,18 @@ class UpdatePasswordResponse: BaseResponse {
 }
 
 class UpvoteEventResponse: BaseResponse {
+    var data: VoteResponseObject?
     override func mapping(map: Map) {
         super.mapping(map: map)
+        data <- map["data"]
     }
 }
 
 class DownvoteEventResponse: BaseResponse {
+    var data: VoteResponseObject?
     override func mapping(map: Map) {
         super.mapping(map: map)
+        data <- map["data"]
     }
 }
 
@@ -91,6 +95,21 @@ class GetUserResponse: BaseResponse {
     }
 }
 
+class VoteResponseObject: NSObject, Mappable {
+    var eventID: String?
+    var downvotes: Int?
+    var upvotes: Int?
+    
+    required init?(map: Map) {
+    }
+    
+    func mapping(map: Map) {
+        eventID <- map["event_id"]
+        downvotes <- map["downvotes"]
+        upvotes <- map["upvotes"]
+    }
+}
+
 
 class UsersObject: NSObject, Mappable {
     
@@ -103,6 +122,7 @@ class UsersObject: NSObject, Mappable {
     var nickname: String?
     var date: String?
     var queryPoint: Int?
+    var avatarImgPath: String?
     
     required init?(map: Map) {
     }
@@ -117,10 +137,9 @@ class UsersObject: NSObject, Mappable {
         nickname <- map["nickname"]
         date <- map["created_at"]
         queryPoint <- map["queryTimePoints"]
+        avatarImgPath <- map["avatar"]
         
     }
-    
-    
 }
 
 class EventDetailsObject: NSObject, Mappable {
@@ -144,6 +163,9 @@ class EventDetailsObject: NSObject, Mappable {
     var updatedAt: String?
     var createdAt: String?
     var point: PointsObject?
+    var isDownvoted: Bool?
+    var isUpvoted: Bool?
+    var imagePaths: [String]?
     
     public required init?(map: Map) {
         
@@ -173,6 +195,9 @@ class EventDetailsObject: NSObject, Mappable {
         updatedAt <- map["updated_at"]
         createdAt <- map["created_at"]
         point <- map["Point"]
+        isUpvoted <- map["isUpvoted"]
+        isDownvoted <- map["isDownvoted"]
+        imagePaths <- map["mediaDatas"]
         
     }
 }
@@ -191,8 +216,6 @@ class PointsObject: NSObject,Mappable {
         upVotes <- map["upvotes"]
         isVerified <- map["isVerified"]
     }
-    
-    
 }
 
 class UserInfoObject: NSObject, Mappable {

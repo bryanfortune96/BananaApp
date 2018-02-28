@@ -38,12 +38,12 @@ class BananaServiceRest: BaseService, BananaServiceProtocol {
         return self.makeRequest(request: BananaRouter.UpdatePassword(param: param,token: token,userID: userID), returnType: UpdatePasswordResponse.self, isArrayResponse: false, showLoading: true).task
     }
     
-    func UpvoteEvent(eventID: String,token: String) -> BFTask<AnyObject> {
-        return self.makeRequest(request: BananaRouter.UpvoteEvent(eventID: eventID, token: token), returnType: UpvoteEventResponse.self, isArrayResponse: false, showLoading: true).task
+    func UpvoteEvent(param: Dictionary<String, Any>, eventID: String,token: String) -> BFTask<AnyObject> {
+        return self.makeRequest(request: BananaRouter.UpvoteEvent(param: param, eventID: eventID, token: token), returnType: UpvoteEventResponse.self, isArrayResponse: false, showLoading: true).task
     }
     
-    func DownvoteEvent(eventID: String,token: String) -> BFTask<AnyObject> {
-        return self.makeRequest(request: BananaRouter.DownvoteEvent(eventID: eventID, token: token), returnType: DownvoteEventResponse.self, isArrayResponse: false, showLoading: true).task
+    func DownvoteEvent(param: Dictionary<String, Any>, eventID: String,token: String) -> BFTask<AnyObject> {
+        return self.makeRequest(request: BananaRouter.DownvoteEvent(param: param, eventID: eventID, token: token), returnType: DownvoteEventResponse.self, isArrayResponse: false, showLoading: true).task
     }
     
     func GetLeaderboardAllTime() -> BFTask<AnyObject> {

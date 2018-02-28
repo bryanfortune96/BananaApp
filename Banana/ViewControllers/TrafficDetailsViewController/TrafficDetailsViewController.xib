@@ -1,22 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TrafficDetailsViewController" customModule="Banana" customModuleProvider="target">
             <connections>
+                <outlet property="blackView" destination="Hyw-Qa-ddR" id="Otv-cS-fRM"/>
+                <outlet property="downButt" destination="8e7-ZG-dox" id="HEE-ju-nUR"/>
+                <outlet property="imageBottomConstraint" destination="TMG-Ks-Por" id="C86-hd-2ef"/>
+                <outlet property="imageHeight" destination="PhZ-vJ-HkV" id="g2F-Mp-3yB"/>
+                <outlet property="imageView" destination="m2R-yy-XBB" id="Cqd-zR-H7v"/>
                 <outlet property="middleView" destination="5H8-qP-gKA" id="eI6-v8-joq"/>
                 <outlet property="shadowView" destination="V3Y-Ju-6x6" id="hLq-6O-87X"/>
                 <outlet property="tableView" destination="S0i-ET-BlD" id="35Z-9h-DFB"/>
                 <outlet property="timePointsLb" destination="4OK-7A-TAq" id="GmN-Cu-RSF"/>
                 <outlet property="titleLb" destination="bn6-1E-00r" id="XKX-m9-Wo4"/>
+                <outlet property="upButt" destination="De9-gI-jo9" id="hSV-4o-9m9"/>
                 <outlet property="view" destination="cXi-dI-qBX" id="weH-bN-4np"/>
             </connections>
         </placeholder>
@@ -92,35 +98,35 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hkw-yC-SJE">
                             <rect key="frame" x="0.0" y="441" width="285" height="65"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aCy-85-BaA" userLabel="facebookButt">
-                                    <rect key="frame" x="250" y="20.5" width="14" height="24"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aCy-85-BaA" userLabel="imageButt">
+                                    <rect key="frame" x="236" y="18.5" width="28" height="28"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="14" id="tFf-cz-dUi"/>
-                                        <constraint firstAttribute="height" constant="24" id="tXE-a1-MrK"/>
+                                        <constraint firstAttribute="width" constant="28" id="tFf-cz-dUi"/>
+                                        <constraint firstAttribute="height" constant="28" id="tXE-a1-MrK"/>
                                     </constraints>
-                                    <state key="normal" image="facebook_icon"/>
+                                    <state key="normal" image="image_icon"/>
                                     <connections>
-                                        <action selector="facebookPressed:" destination="-1" eventType="touchUpInside" id="TcE-6b-tbK"/>
+                                        <action selector="imagePressed:" destination="-1" eventType="touchUpInside" id="AbF-2P-D4b"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8e7-ZG-dox" userLabel="disagreeButt">
-                                    <rect key="frame" x="216" y="21.5" width="21" height="22"/>
+                                <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8e7-ZG-dox" userLabel="disagreeButt">
+                                    <rect key="frame" x="190" y="16" width="33" height="33"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="21" id="N8p-xK-tuJ"/>
-                                        <constraint firstAttribute="height" constant="22" id="kmS-2X-aIa"/>
+                                        <constraint firstAttribute="width" constant="33" id="N8p-xK-tuJ"/>
+                                        <constraint firstAttribute="height" constant="33" id="kmS-2X-aIa"/>
                                     </constraints>
-                                    <state key="normal" image="down_icon"/>
+                                    <state key="normal" image="down1_icon"/>
                                     <connections>
                                         <action selector="disagreePressed:" destination="-1" eventType="touchUpInside" id="g0c-vX-Nsg"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="De9-gI-jo9" userLabel="agreeButt">
-                                    <rect key="frame" x="182" y="21.5" width="21" height="22"/>
+                                <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="De9-gI-jo9" userLabel="agreeButt">
+                                    <rect key="frame" x="144" y="16" width="33" height="33"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="22" id="cb2-ap-MQl"/>
-                                        <constraint firstAttribute="width" constant="21" id="wY5-Hf-REZ"/>
+                                        <constraint firstAttribute="height" constant="33" id="cb2-ap-MQl"/>
+                                        <constraint firstAttribute="width" constant="33" id="wY5-Hf-REZ"/>
                                     </constraints>
-                                    <state key="normal" image="up_icon"/>
+                                    <state key="normal" image="up1_icon"/>
                                     <connections>
                                         <action selector="agreePressed:" destination="-1" eventType="touchUpInside" id="gnw-09-JbA"/>
                                     </connections>
@@ -149,30 +155,47 @@
                         <constraint firstItem="Hkw-yC-SJE" firstAttribute="top" secondItem="S0i-ET-BlD" secondAttribute="bottom" id="ujj-hD-PqH"/>
                     </constraints>
                 </view>
+                <view alpha="0.25" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hyw-Qa-ddR" userLabel="blackView">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="m2R-yy-XBB">
+                    <rect key="frame" x="0.0" y="101" width="375" height="566"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="566" id="PhZ-vJ-HkV"/>
+                    </constraints>
+                </imageView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="5H8-qP-gKA" secondAttribute="bottom" constant="40" id="0Gh-Gj-9da"/>
+                <constraint firstItem="Hyw-Qa-ddR" firstAttribute="top" secondItem="cXi-dI-qBX" secondAttribute="top" id="1I1-Kc-sHN"/>
+                <constraint firstAttribute="trailing" secondItem="m2R-yy-XBB" secondAttribute="trailing" id="1XB-e3-x4z"/>
                 <constraint firstItem="V3Y-Ju-6x6" firstAttribute="trailing" secondItem="5H8-qP-gKA" secondAttribute="trailing" id="23z-of-M49"/>
                 <constraint firstItem="V3Y-Ju-6x6" firstAttribute="width" secondItem="5H8-qP-gKA" secondAttribute="width" id="4BT-9f-4G9"/>
+                <constraint firstAttribute="trailing" secondItem="Hyw-Qa-ddR" secondAttribute="trailing" id="OFI-YQ-jPJ"/>
                 <constraint firstItem="V3Y-Ju-6x6" firstAttribute="bottom" secondItem="5H8-qP-gKA" secondAttribute="bottom" id="SJN-ce-3jG"/>
+                <constraint firstAttribute="bottom" secondItem="m2R-yy-XBB" secondAttribute="bottom" id="TMG-Ks-Por"/>
                 <constraint firstAttribute="trailing" secondItem="5H8-qP-gKA" secondAttribute="trailing" constant="45" id="YQE-Sz-PAf"/>
                 <constraint firstItem="4cU-DJ-EnY" firstAttribute="top" secondItem="cXi-dI-qBX" secondAttribute="top" id="YdH-y8-dHb"/>
                 <constraint firstItem="4cU-DJ-EnY" firstAttribute="centerX" secondItem="cXi-dI-qBX" secondAttribute="centerX" id="aIz-wr-uSE"/>
+                <constraint firstAttribute="bottom" secondItem="Hyw-Qa-ddR" secondAttribute="bottom" id="dXZ-LL-rcm"/>
                 <constraint firstItem="V3Y-Ju-6x6" firstAttribute="leading" secondItem="5H8-qP-gKA" secondAttribute="leading" id="duI-eP-Jqn"/>
                 <constraint firstItem="4cU-DJ-EnY" firstAttribute="width" secondItem="cXi-dI-qBX" secondAttribute="width" id="f2C-qx-0Qr"/>
                 <constraint firstItem="5H8-qP-gKA" firstAttribute="leading" secondItem="cXi-dI-qBX" secondAttribute="leading" constant="45" id="mzu-Xr-VB0"/>
+                <constraint firstItem="Hyw-Qa-ddR" firstAttribute="leading" secondItem="cXi-dI-qBX" secondAttribute="leading" id="t3n-0Y-Taa"/>
                 <constraint firstItem="5H8-qP-gKA" firstAttribute="top" secondItem="bn6-1E-00r" secondAttribute="bottom" constant="57.5" id="vIV-eG-Mb8"/>
                 <constraint firstItem="V3Y-Ju-6x6" firstAttribute="top" secondItem="5H8-qP-gKA" secondAttribute="top" constant="-10" id="xXF-Xw-qTp"/>
+                <constraint firstItem="m2R-yy-XBB" firstAttribute="leading" secondItem="cXi-dI-qBX" secondAttribute="leading" id="ylY-OU-85H"/>
             </constraints>
             <point key="canvasLocation" x="29.5" y="69.5"/>
         </view>
     </objects>
     <resources>
         <image name="back_icon" width="22" height="18"/>
-        <image name="down_icon" width="23" height="22"/>
-        <image name="facebook_icon" width="14" height="23"/>
+        <image name="down1_icon" width="93" height="93"/>
+        <image name="image_icon" width="38" height="38"/>
         <image name="map" width="25" height="24"/>
-        <image name="up_icon" width="22" height="21"/>
+        <image name="up1_icon" width="93" height="93"/>
     </resources>
 </document>

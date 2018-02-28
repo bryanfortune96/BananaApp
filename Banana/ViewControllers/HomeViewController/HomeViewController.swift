@@ -10,6 +10,7 @@ import UIKit
 import GoogleMaps
 import GooglePlaces
 import Alamofire
+import SDWebImage
 
 class HomeViewController: BaseViewController,UITableViewDelegate,UITableViewDataSource {
 
@@ -55,6 +56,9 @@ class HomeViewController: BaseViewController,UITableViewDelegate,UITableViewData
     var userInfo: UsersObject?
     {
         didSet{
+            if userInfo?.avatarImgPath != "" {
+                self.avatarImgView.sd_setImage(with: URL(string: (userInfo?.avatarImgPath)!), completed: nil)
+            }
             self.pointsRankLb.text = "\(String(describing: (userInfo?.point)!)) points | \(DataMgr.shared.levels[(userInfo?.level)!])"
             switch (userInfo?.level)! {
             case 0:
@@ -213,11 +217,11 @@ class HomeViewController: BaseViewController,UITableViewDelegate,UITableViewData
     
     func loadDB()
     {
-        self.showLoading()
         let userID = UserDefaults.standard.string(forKey: "UserID")
         let token = UserDefaults.standard.string(forKey: "Token")
         
         if userID != "" {
+            self.showLoading()
             ServiceHelpers.getUser(userID: userID!, token: token!){(response) in
                 self.userResponse = response
             }
@@ -225,9 +229,9 @@ class HomeViewController: BaseViewController,UITableViewDelegate,UITableViewData
                 self.response = response
             }
         } else {
-            ServiceHelpers.getEventList(userID: "-1"){ (response) in
-                self.response = response
-            }
+//            ServiceHelpers.getEventList(userID: "-1"){ (response) in
+//                self.response = response
+//            }
         }
     }
 

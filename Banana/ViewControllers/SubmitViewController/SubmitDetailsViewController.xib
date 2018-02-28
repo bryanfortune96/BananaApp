@@ -15,14 +15,19 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SubmitDetailsViewController" customModule="Banana" customModuleProvider="target">
             <connections>
                 <outlet property="blackView" destination="R0n-HC-Cr5" id="Rjt-U9-XTm"/>
+                <outlet property="cameraButt" destination="fCA-BZ-4Mh" id="Yc5-5l-VYU"/>
                 <outlet property="chooseButt" destination="1kF-SZ-nF3" id="FC0-Ze-fm7"/>
                 <outlet property="distanceLb" destination="Ly8-7T-R1g" id="t4S-jf-Bmi"/>
+                <outlet property="imageBottomConstraint" destination="u4Q-qX-aXp" id="qyO-BM-WYt"/>
+                <outlet property="imageHeightContraint" destination="qlb-H5-crT" id="Lwl-eV-N0D"/>
+                <outlet property="imageView" destination="thS-jL-3dc" id="fUN-uv-g7o"/>
                 <outlet property="middleView" destination="Bf6-25-hNJ" id="yT6-zr-M6j"/>
                 <outlet property="pickerUIView" destination="i20-vF-rLl" id="7m4-CB-gwV"/>
                 <outlet property="pickerView" destination="abo-yr-3AO" id="pk2-sa-Y4n"/>
                 <outlet property="shadowView" destination="UKS-4H-1dA" id="To7-Cv-OmA"/>
                 <outlet property="tableView" destination="uPw-Gv-U8a" id="PJ7-Ac-Eb5"/>
                 <outlet property="titleLb" destination="0MR-2c-pxH" id="UuR-tM-OCy"/>
+                <outlet property="topView" destination="f2V-rp-TTT" id="Uzp-eb-iPB"/>
                 <outlet property="view" destination="AEd-JK-qNt" id="b37-he-Iqt"/>
             </connections>
         </placeholder>
@@ -61,7 +66,7 @@
                                 <constraint firstAttribute="width" constant="49" id="dNs-tm-nvx"/>
                                 <constraint firstAttribute="height" constant="38" id="dhg-JT-bTZ"/>
                             </constraints>
-                            <state key="normal" image="camera2_icon"/>
+                            <state key="normal" image="camera_icon"/>
                             <connections>
                                 <action selector="cameraPressed:" destination="-1" eventType="touchUpInside" id="e0J-ES-PdA"/>
                             </connections>
@@ -209,6 +214,26 @@
                         <constraint firstItem="abo-yr-3AO" firstAttribute="leading" secondItem="i20-vF-rLl" secondAttribute="leading" id="w3a-6v-EDj"/>
                     </constraints>
                 </view>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="thS-jL-3dc">
+                    <rect key="frame" x="0.0" y="284" width="375" height="383"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="383" id="qlb-H5-crT"/>
+                    </constraints>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9vk-ZC-Flr">
+                    <rect key="frame" x="150" y="241" width="75" height="28"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="28" id="FfC-bO-pTM"/>
+                        <constraint firstAttribute="width" constant="75" id="uUu-Ao-sNq"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                    <state key="normal" title="Delete">
+                        <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="deleteImagePressed:" destination="-1" eventType="touchUpInside" id="RQs-AT-S0k"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -219,6 +244,7 @@
                 <constraint firstItem="O8z-B5-mJz" firstAttribute="top" secondItem="R0n-HC-Cr5" secondAttribute="top" constant="20" id="Dme-Ja-k4r"/>
                 <constraint firstItem="Bf6-25-hNJ" firstAttribute="top" secondItem="Ua6-oz-Rg0" secondAttribute="bottom" constant="57.5" id="FcQ-pq-ReM"/>
                 <constraint firstItem="UKS-4H-1dA" firstAttribute="leading" secondItem="Bf6-25-hNJ" secondAttribute="leading" id="H2a-9O-N9V"/>
+                <constraint firstItem="O8z-B5-mJz" firstAttribute="trailing" secondItem="9vk-ZC-Flr" secondAttribute="trailing" constant="150" id="HAz-M1-cqd"/>
                 <constraint firstAttribute="bottom" secondItem="Bf6-25-hNJ" secondAttribute="bottom" constant="40" id="HYv-Mu-2Rh"/>
                 <constraint firstItem="UKS-4H-1dA" firstAttribute="trailing" secondItem="Bf6-25-hNJ" secondAttribute="trailing" id="K7a-4J-Lhj"/>
                 <constraint firstItem="i20-vF-rLl" firstAttribute="centerX" secondItem="O8z-B5-mJz" secondAttribute="centerX" id="LZx-2l-5if"/>
@@ -226,10 +252,15 @@
                 <constraint firstItem="UKS-4H-1dA" firstAttribute="width" secondItem="Bf6-25-hNJ" secondAttribute="width" id="P1x-QD-Ss7"/>
                 <constraint firstItem="i20-vF-rLl" firstAttribute="width" secondItem="Bf6-25-hNJ" secondAttribute="width" multiplier="0.8" id="R9E-I0-Y0s"/>
                 <constraint firstItem="R0n-HC-Cr5" firstAttribute="width" secondItem="AEd-JK-qNt" secondAttribute="width" id="RqE-gI-qfo"/>
+                <constraint firstItem="9vk-ZC-Flr" firstAttribute="leading" secondItem="O8z-B5-mJz" secondAttribute="leading" constant="150" id="dPr-bR-tZ5"/>
                 <constraint firstItem="i20-vF-rLl" firstAttribute="centerY" secondItem="O8z-B5-mJz" secondAttribute="centerY" id="gKK-yh-maw"/>
+                <constraint firstItem="thS-jL-3dc" firstAttribute="trailing" secondItem="O8z-B5-mJz" secondAttribute="trailing" id="iGs-O5-sZT"/>
+                <constraint firstItem="thS-jL-3dc" firstAttribute="leading" secondItem="O8z-B5-mJz" secondAttribute="leading" id="jnX-4C-bE3"/>
                 <constraint firstItem="UKS-4H-1dA" firstAttribute="bottom" secondItem="Bf6-25-hNJ" secondAttribute="bottom" id="oH4-Yv-bf1"/>
                 <constraint firstItem="CH5-vz-iPg" firstAttribute="centerX" secondItem="AEd-JK-qNt" secondAttribute="centerX" id="pvX-gH-2Pu"/>
                 <constraint firstItem="UKS-4H-1dA" firstAttribute="top" secondItem="Bf6-25-hNJ" secondAttribute="top" constant="-10" id="rBm-Bj-tFH"/>
+                <constraint firstItem="thS-jL-3dc" firstAttribute="bottom" secondItem="O8z-B5-mJz" secondAttribute="bottom" id="u4Q-qX-aXp"/>
+                <constraint firstItem="thS-jL-3dc" firstAttribute="top" secondItem="9vk-ZC-Flr" secondAttribute="bottom" constant="15" id="ywO-ug-mCx"/>
                 <constraint firstAttribute="trailing" secondItem="Bf6-25-hNJ" secondAttribute="trailing" constant="45" id="zSN-cA-2oC"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="O8z-B5-mJz"/>
@@ -237,7 +268,7 @@
         </view>
     </objects>
     <resources>
-        <image name="camera2_icon" width="28" height="22"/>
+        <image name="camera_icon" width="28" height="22"/>
         <image name="cancel_button" width="16" height="16"/>
         <image name="check-icon" width="25" height="20"/>
         <image name="cross_icon" width="21" height="21"/>

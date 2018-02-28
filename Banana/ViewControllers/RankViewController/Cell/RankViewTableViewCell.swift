@@ -34,7 +34,11 @@ class RankViewTableViewCell: UITableViewCell {
     func populate(usrInfo: UsersObject,position: Int,choosingOption: Int)
     {
         positionLb.text = String(position)
-        avatarImgView.image = #imageLiteral(resourceName: "user")
+        if usrInfo.avatarImgPath != "" {
+            self.avatarImgView.sd_setImage(with: URL(string: (usrInfo.avatarImgPath)!), completed: nil)
+        } else {
+            avatarImgView.image = #imageLiteral(resourceName: "user")
+        }
         let point = choosingOption == 0 ? usrInfo.point : usrInfo.queryPoint
         pointsRankLb.text = "\((point)!) points | \(DataMgr.shared.levels[usrInfo.level!])"
         if usrInfo.nickname == ""

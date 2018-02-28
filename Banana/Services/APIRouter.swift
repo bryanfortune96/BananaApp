@@ -22,8 +22,8 @@ enum BananaRouter: URLRequestConvertible {
     case Register(param: Dictionary<String, Any>)
     case UpdateUser(param: Dictionary<String,Any>,token: String,userID: String)
     case UpdatePassword(param: Dictionary<String,Any>,token: String,userID: String)
-    case UpvoteEvent(eventID: String,token: String)
-    case DownvoteEvent(eventID: String,token: String)
+    case UpvoteEvent(param: Dictionary<String,Any>, eventID: String,token: String)
+    case DownvoteEvent(param: Dictionary<String,Any>, eventID: String,token: String)
     case GetLeaderboardAllTime()
     case GetLeaderboardMonth(time: String)
     case GetLeaderboardYear(time: String)
@@ -49,9 +49,9 @@ enum BananaRouter: URLRequestConvertible {
             return .put
         case .UpdatePassword(let param,let token,let userID):
             return .put
-        case .UpvoteEvent(let eventID):
+        case .UpvoteEvent(let param, let eventID, let token):
             return .post
-        case .DownvoteEvent(let eventID,let token):
+        case .DownvoteEvent(let param, let eventID,let token):
             return .post
         case .GetLeaderboardAllTime():
             return .get
@@ -82,9 +82,9 @@ enum BananaRouter: URLRequestConvertible {
             return "user/\(userID)"
         case .UpdatePassword(let param, let token,let userID):
             return "user/password/\(userID)"
-        case .UpvoteEvent(let eventID,let token):
+        case .UpvoteEvent(let param, let eventID,let token):
             return "events/upvote/\(eventID)"
-        case .DownvoteEvent(let eventID,let token):
+        case .DownvoteEvent(let param, let eventID,let token):
             return "events/downvote/\(eventID)"
         case .GetLeaderboardAllTime():
             return "leaderboard"
@@ -113,10 +113,10 @@ enum BananaRouter: URLRequestConvertible {
         //send params to httpBody
         switch self {
             
-        case .UpdateUser(let param,let token,let userID):
+        case .UpdateUser(let param, let token, let userID):
             urlRequest.httpBody = try JSONSerialization.data(withJSONObject: param, options: JSONSerialization.WritingOptions.prettyPrinted)
             break
-        case .UpdatePassword(let param,let token,let userID):
+        case .UpdatePassword(let param, let token, let userID):
             urlRequest.httpBody = try JSONSerialization.data(withJSONObject: param, options: JSONSerialization.WritingOptions.prettyPrinted)
             break
         case .PostUser(let param):
@@ -125,10 +125,14 @@ enum BananaRouter: URLRequestConvertible {
         case .Login(let param):
             urlRequest.httpBody = try JSONSerialization.data(withJSONObject: param, options: JSONSerialization.WritingOptions.prettyPrinted)
             break;
-        case .PostEvent(let param,let token):
+        case .PostEvent(let param, let token):
             urlRequest.httpBody = try JSONSerialization.data(withJSONObject: param, options: JSONSerialization.WritingOptions.prettyPrinted)
             break;
         case .Register(let param):
+            urlRequest.httpBody = try JSONSerialization.data(withJSONObject: param, options: JSONSerialization.WritingOptions.prettyPrinted)
+        case .UpvoteEvent(let param, let eventID, let token):
+            urlRequest.httpBody = try JSONSerialization.data(withJSONObject: param, options: JSONSerialization.WritingOptions.prettyPrinted)
+        case .DownvoteEvent(let param, let eventID, let token):
             urlRequest.httpBody = try JSONSerialization.data(withJSONObject: param, options: JSONSerialization.WritingOptions.prettyPrinted)
         default:
             break;
@@ -136,19 +140,19 @@ enum BananaRouter: URLRequestConvertible {
         
         //send header to httpHeader
         switch self {
-        case .PostEvent(let param,let token):
+        case .PostEvent(let param, let token):
             urlRequest.setValue(token, forHTTPHeaderField: "Authorization")
             break
-        case .UpdatePassword(let param,let token,let userID):
+        case .UpdatePassword(let param,let token, let userID):
             urlRequest.setValue(token, forHTTPHeaderField: "Authorization")
             break
-        case .UpdateUser(let param,let token,let userID):
+        case .UpdateUser(let param,let token, let userID):
             urlRequest.setValue(token, forHTTPHeaderField: "Authorization")
-        case .UpvoteEvent(let eventID,let token):
+        case .UpvoteEvent(let param, let eventID, let token):
             urlRequest.setValue(token, forHTTPHeaderField: "Authorization")
-        case .DownvoteEvent(let eventID,let token):
+        case .DownvoteEvent(let param, let eventID, let token):
             urlRequest.setValue(token, forHTTPHeaderField: "Authorization")
-        case .GetUser(let userID,let token):
+        case .GetUser(let userID, let token):
             urlRequest.setValue(token, forHTTPHeaderField: "Authorization")
         default:
             break

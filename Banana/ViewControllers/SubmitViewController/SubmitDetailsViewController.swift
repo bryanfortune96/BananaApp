@@ -9,9 +9,15 @@
 import UIKit
 import MarqueeLabel
 import GoogleMaps
+import Alamofire
 
 class SubmitDetailsViewController: BaseViewController,UITableViewDelegate,UITableViewDataSource,UIPickerViewDelegate,UIPickerViewDataSource {
     
+    @IBOutlet weak var imageBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var imageHeightContraint: NSLayoutConstraint!
+    @IBOutlet weak var cameraButt: UIButton!
+    @IBOutlet weak var topView: UIView!
     @IBOutlet weak var distanceLb: UILabel!
     @IBOutlet weak var middleView: UIView!
     @IBOutlet weak var shadowView: UIView!
@@ -22,6 +28,8 @@ class SubmitDetailsViewController: BaseViewController,UITableViewDelegate,UITabl
     @IBOutlet weak var pickerUIView: UIView!
     @IBOutlet weak var chooseButt: UIButton!
     
+    var didChooseImage = false
+    var isEditingImage = false
     var trafficImage: UIImage?
     var district: Int?
     var start_coor: CLLocationCoordinate2D?
@@ -37,12 +45,13 @@ class SubmitDetailsViewController: BaseViewController,UITableViewDelegate,UITabl
     var response: PostEventResponse?
     {
         didSet{
-            self.hideLoading()
+            //self.hideLoading()
             if (response?.success)!
             {
                 self.submitResponse = response?.data
             }
             else{
+                self.hideLoading()
                 let alert = UIAlertController(title: "Warning!", message: response?.message, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
@@ -52,8 +61,15 @@ class SubmitDetailsViewController: BaseViewController,UITableViewDelegate,UITabl
     var submitResponse: EventDetailsObject?
     {
         didSet{
-            NotificationCenter.default.post(name: NSNotification.Name("CloseSubmitView"), object: nil)
-            self.dismiss(animated: true, completion: nil)
+            let token = UserDefaults.standard.string(forKey: "Token")
+            if trafficImage != nil {
+                self.postImage(data: UIImageJPEGRepresentation(trafficImage!, 1)!, eventID: (submitResponse?.id)!, token: token!)
+            } else {
+                self.hideLoading()
+                NotificationCenter.default.post(name: NSNotification.Name("CloseSubmitView"), object: nil)
+                self.dismiss(animated: true, completion: nil)
+            }
+            
         }
     }
     var currentIndexPath = 0
@@ -67,6 +83,9 @@ class SubmitDetailsViewController: BaseViewController,UITableViewDelegate,UITabl
 
     func initialize()
     {
+        imageBottomConstraint.constant =  SCREEN_HEIGHT
+        imageHeightContraint.constant = SCREEN_HEIGHT - 200
+        
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: "SubmitDetailsTableViewCell", bundle: nil), forCellReuseIdentifier: "SubmitDetailsTableViewCell")
@@ -81,6 +100,7 @@ class SubmitDetailsViewController: BaseViewController,UITableViewDelegate,UITabl
         middleView.layer.cornerRadius = 10
         shadowView.layer.cornerRadius = 10
         pickerUIView.layer.cornerRadius = 10
+        topView.layer.cornerRadius = 10
         
         
         // shadow
@@ -122,8 +142,46 @@ class SubmitDetailsViewController: BaseViewController,UITableViewDelegate,UITabl
         // Dispose of any resources that can be recreated.
     }
     
+    func postImage(data: Data, eventID: String, token: String) {
+        let URL = "https://bananaserver.herokuapp.com/events/media/" + eventID
+        let request = try! URLRequest(url: URL, method: .put, headers: ["Content-Type": "application/x-www-form-urlencoded","Authorization": token])
+        
+        Alamofire.upload(multipartFormData: { MultipartFormData in
+            let filename = eventID + ".jpeg"
+            MultipartFormData.append(data, withName: "image", fileName: filename, mimeType: "image/jpeg")
+        },
+                         with: request,
+                         encodingCompletion: { (result) in
+                            switch result {
+                            case .success(let upload, _, _):
+                                upload.responseJSON { response in
+                                    let value = response.result.value as! [String: Any]
+                                    print(value)
+                                    self.hideLoading()
+                                    NotificationCenter.default.post(name: NSNotification.Name("CloseSubmitView"), object: nil)
+                                    self.dismiss(animated: true, completion: nil)
+                                }
+                                
+                            case .failure( _):
+                                self.hideLoading()
+                                self.showAlert(message: "Could not connect to server")
+                            }
+        })
+    }
     
-    @IBAction func cameraPressed(_ sender: Any) {
+    func showSuccess() {
+        let alert = UIAlertController(title: "Chú ý", message: "Cập nhật thông tin thành công!", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func showAlert(message: String) {
+        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func handleCameraOpening() {
         let alert = UIAlertController(title: "", message: nil, preferredStyle: .actionSheet)
         
         // Change Message With Color and Font
@@ -156,6 +214,25 @@ class SubmitDetailsViewController: BaseViewController,UITableViewDelegate,UITabl
         self.present(alert, animated: true, completion: nil)
     }
     
+    @IBAction func cameraPressed(_ sender: Any) {
+        if didChooseImage {
+            isEditingImage = true
+            imageBottomConstraint.constant = 0
+            blackView.isHidden = false
+            UIView.animate(withDuration: 0.5, animations: {
+                self.view.layoutIfNeeded()
+            })
+        } else {
+            handleCameraOpening()
+        }
+    }
+    @IBAction func deleteImagePressed(_ sender: Any) {
+        trafficImage = nil
+        didChooseImage = !didChooseImage
+        cameraButt.setImage(#imageLiteral(resourceName: "camera_icon"), for: .normal)
+        closeOptions()
+    }
+    
     @IBAction func confirmPressed(_ sender: Any) {
         self.showLoading()
         getDistrict()
@@ -164,8 +241,9 @@ class SubmitDetailsViewController: BaseViewController,UITableViewDelegate,UITabl
         submitData = ["userId": userID! as Any,"name": placeName,"eventType":0,"latitude": Float((start_coor?.latitude)!),"longitude": Float((start_coor?.longitude)!) as Any,"end_latitude": Float((end_coor?.latitude)!) as Any,"end_longitude": Float((end_coor?.longitude)!) as Any,"density": submitList[0],"motorbike_speed": submitList[1],"car_speed": submitList[2],"has_rain": DataMgr.shared.booleanStyle[submitList[3]], "has_accident": DataMgr.shared.booleanStyle[submitList[4]], "has_flood": DataMgr.shared.booleanStyle[submitList[5]],"should_travel":DataMgr.shared.booleanStyle[submitList[6]],"district": district! as Any]
         ServiceHelpers.postEvent(param: submitData, token: (token)!) { (response) in
             self.response = response
-            
+
         }
+
     }
     
     @IBAction func cancelPressed(_ sender: Any) {
@@ -188,24 +266,29 @@ class SubmitDetailsViewController: BaseViewController,UITableViewDelegate,UITabl
         return pickerList[row]
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        
         contentList[currentIndexPath] = pickerList[row]
         submitList[currentIndexPath] = row
         isTouched[currentIndexPath] = 1
         tableView.reloadData()
-        
-    }
+            }
     
     @objc func closeOptions()
     {
-        UIView.animate(withDuration: 1, animations: {
-            self.blackView.isHidden = true
-            self.pickerUIView.isHidden = true
-            self.pickerView.isHidden = true
-        })
+        self.blackView.isHidden = true
+        if isEditingImage {
+            isEditingImage = !isEditingImage
+            imageBottomConstraint.constant = SCREEN_HEIGHT
+            UIView.animate(withDuration: 0.5, animations: {
+                self.view.layoutIfNeeded()
+            })
+        } else {
+            UIView.animate(withDuration: 1, animations: {
+                self.pickerUIView.isHidden = true
+                self.pickerView.isHidden = true
+            })
+        }
     }
-    
-    
+
     ////TablewView functions
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50
@@ -286,6 +369,9 @@ extension SubmitDetailsViewController: UIImagePickerControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
             trafficImage = pickedImage
+            cameraButt.setImage(#imageLiteral(resourceName: "camera_checked_icon"), for: .normal)
+            didChooseImage = true
+            imageView.image = pickedImage
         }
         dismiss(animated: true, completion: nil)
 

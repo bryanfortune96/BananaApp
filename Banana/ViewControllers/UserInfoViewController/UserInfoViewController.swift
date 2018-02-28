@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class UserInfoViewController: UIViewController {
 
@@ -55,13 +56,15 @@ class UserInfoViewController: UIViewController {
         //imageview rounded shape
         avatarImgView.clipsToBounds = true
         avatarImgView.layer.cornerRadius = 120.0/2
-    
-
     }
     
     func loadData()
     {
-        avatarImgView.image = #imageLiteral(resourceName: "user")
+        if userInfo?.avatarImgPath != "" {
+            self.avatarImgView.sd_setImage(with: URL(string: (userInfo?.avatarImgPath)!), completed: nil)
+        } else {
+            avatarImgView.image = #imageLiteral(resourceName: "user")
+        }
         if userInfo?.nickname != ""
         {
             usrnameLb.text = userInfo?.nickname

@@ -50,6 +50,8 @@
 		2157D8BD1FA3905D00388CC8 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2157D8BB1FA3905D00388CC8 /* AccountViewController.swift */; };
 		2157D8BE1FA3905D00388CC8 /* AccountViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2157D8BC1FA3905D00388CC8 /* AccountViewController.xib */; };
 		215EA05320204E7E00C6315E /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215EA05220204E7E00C6315E /* Extension.swift */; };
+		21664280204543020045B146 /* TrafficImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2166427E204543020045B146 /* TrafficImageViewController.swift */; };
+		21664281204543020045B146 /* TrafficImageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2166427F204543020045B146 /* TrafficImageViewController.xib */; };
 		217EAA901F8412530098CDEF /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 217EAA8F1F8412530098CDEF /* Launch Screen.storyboard */; };
 		217EAA951F86000A0098CDEF /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217EAA931F86000A0098CDEF /* FavoriteViewController.swift */; };
 		217EAA961F86000A0098CDEF /* FavoriteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 217EAA941F86000A0098CDEF /* FavoriteViewController.xib */; };
@@ -72,6 +74,7 @@
 		21C465651F907DE700682522 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C465641F907DE700682522 /* Constant.swift */; };
 		21CE91E81F7A123B003E26EB /* BaseViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CE91E61F7A123B003E26EB /* BaseViewTableViewCell.swift */; };
 		21CE91E91F7A123B003E26EB /* BaseViewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21CE91E71F7A123B003E26EB /* BaseViewTableViewCell.xib */; };
+		21E81FED20299896001083F7 /* FormDataServiceHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E81FEC20299896001083F7 /* FormDataServiceHelpers.swift */; };
 		5AE318DC5B7B5A65A6DBB2FE /* Pods_BananaUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D67194C94984E26BF16380F4 /* Pods_BananaUITests.framework */; };
 		69867F677F13651526219CF6 /* Pods_Banana.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0866AE4690608EE7572D93C /* Pods_Banana.framework */; };
 		D24262D3197501AF790B9BC4 /* Pods_BananaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C337454F9710C4629708DAE6 /* Pods_BananaTests.framework */; };
@@ -145,6 +148,8 @@
 		2157D8BB1FA3905D00388CC8 /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AccountViewController.swift; path = ViewControllers/AccountViewController/AccountViewController.swift; sourceTree = "<group>"; };
 		2157D8BC1FA3905D00388CC8 /* AccountViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = AccountViewController.xib; path = ViewControllers/AccountViewController/AccountViewController.xib; sourceTree = "<group>"; };
 		215EA05220204E7E00C6315E /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Extension.swift; path = Shared/Extension.swift; sourceTree = "<group>"; };
+		2166427E204543020045B146 /* TrafficImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TrafficImageViewController.swift; path = ViewControllers/TrafficDetailsViewController/TrafficImageViewController.swift; sourceTree = "<group>"; };
+		2166427F204543020045B146 /* TrafficImageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TrafficImageViewController.xib; path = ViewControllers/TrafficDetailsViewController/TrafficImageViewController.xib; sourceTree = "<group>"; };
 		217EAA8F1F8412530098CDEF /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		217EAA931F86000A0098CDEF /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FavoriteViewController.swift; path = Menu/FavoriteViewController/FavoriteViewController.swift; sourceTree = "<group>"; };
 		217EAA941F86000A0098CDEF /* FavoriteViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = FavoriteViewController.xib; path = Menu/FavoriteViewController/FavoriteViewController.xib; sourceTree = "<group>"; };
@@ -168,6 +173,7 @@
 		21C465641F907DE700682522 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Constant.swift; path = Shared/Constant.swift; sourceTree = "<group>"; };
 		21CE91E61F7A123B003E26EB /* BaseViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BaseViewTableViewCell.swift; path = Cell/BaseViewTableViewCell.swift; sourceTree = "<group>"; };
 		21CE91E71F7A123B003E26EB /* BaseViewTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = BaseViewTableViewCell.xib; path = Cell/BaseViewTableViewCell.xib; sourceTree = "<group>"; };
+		21E81FEC20299896001083F7 /* FormDataServiceHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FormDataServiceHelpers.swift; path = Services/FormDataServiceHelpers.swift; sourceTree = "<group>"; };
 		2E4E8B76CB14F1DF772A236C /* Pods-BananaUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BananaUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BananaUITests/Pods-BananaUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		42EC40078794DB8D11A2C290 /* Pods-Banana.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Banana.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Banana/Pods-Banana.debug.xcconfig"; sourceTree = "<group>"; };
 		4CE2CE4D49F110C868B1434D /* Pods-Banana.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Banana.release.xcconfig"; path = "Pods/Target Support Files/Pods-Banana/Pods-Banana.release.xcconfig"; sourceTree = "<group>"; };
@@ -365,6 +371,8 @@
 				212DEFDA1F7519EC00976016 /* TrafficDetailsViewController.xib */,
 				2157D8B61FA37EA400388CC8 /* MapTrafficDetailsViewController.swift */,
 				2157D8B71FA37EA400388CC8 /* MapTrafficDetailsViewController.xib */,
+				2166427E204543020045B146 /* TrafficImageViewController.swift */,
+				2166427F204543020045B146 /* TrafficImageViewController.xib */,
 			);
 			name = TrafficDetailsViewController;
 			sourceTree = "<group>";
@@ -483,6 +491,7 @@
 				21C465451F8D1BA500682522 /* BananaServiceRest.swift */,
 				21C4654B1F8F7AC200682522 /* BananaServiceProtocol.swift */,
 				21C465621F9076D100682522 /* ServiceHelpers.swift */,
+				21E81FEC20299896001083F7 /* FormDataServiceHelpers.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -673,6 +682,7 @@
 				212DEFDC1F7519EC00976016 /* TrafficDetailsViewController.xib in Resources */,
 				212EBCEE1F6AD36200970E29 /* ListViewTableViewCell.xib in Resources */,
 				211030211F6386F50083F701 /* HomeViewController.xib in Resources */,
+				21664281204543020045B146 /* TrafficImageViewController.xib in Resources */,
 				211DCEEA1F75697B00CB91A0 /* SubmitDetailsTableViewCell.xib in Resources */,
 				211DCEEE1F76220700CB91A0 /* SubmitDetailsViewController.xib in Resources */,
 				21CE91E91F7A123B003E26EB /* BaseViewTableViewCell.xib in Resources */,
@@ -827,6 +837,7 @@
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/RDVTabBarController/RDVTabBarController.framework",
 				"${BUILT_PRODUCTS_DIR}/SCLAlertView/SCLAlertView.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/Swinject/Swinject.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -843,6 +854,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RDVTabBarController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SCLAlertView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Swinject.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -899,6 +911,7 @@
 				21C465651F907DE700682522 /* Constant.swift in Sources */,
 				2141B8B41F7FEE180085C7D3 /* FeedbackViewController.swift in Sources */,
 				2141B8B91F80A5810085C7D3 /* RankViewTableViewCell.swift in Sources */,
+				21664280204543020045B146 /* TrafficImageViewController.swift in Sources */,
 				215EA05320204E7E00C6315E /* Extension.swift in Sources */,
 				211DCEED1F76220700CB91A0 /* SubmitDetailsViewController.swift in Sources */,
 				21102FED1F6298EF0083F701 /* AppDelegate.swift in Sources */,
@@ -923,6 +936,7 @@
 				217EAA9A1F86012B0098CDEF /* FavoriteTableViewCell.swift in Sources */,
 				2141B8AF1F7FE92E0085C7D3 /* NotificationViewController.swift in Sources */,
 				2110302B1F6389290083F701 /* BaseViewController.swift in Sources */,
+				21E81FED20299896001083F7 /* FormDataServiceHelpers.swift in Sources */,
 				2141B8A91F7FA3310085C7D3 /* HomeViewTableViewCell.swift in Sources */,
 				217EAA951F86000A0098CDEF /* FavoriteViewController.swift in Sources */,
 				21C465461F8D1BA500682522 /* BananaServiceRest.swift in Sources */,

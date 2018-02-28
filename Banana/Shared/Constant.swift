@@ -23,3 +23,5 @@ struct Colors {
     static let appReversedColor = UIColor.init(red: 233/255, green: 118/255, blue: 38/255, alpha: 1)
 
 }
+
+

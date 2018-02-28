@@ -27,6 +27,7 @@ class ListViewController: BaseViewController,UICollectionViewDelegate,UICollecti
             if (upVoteResponse?.success)! {
                 refresh()
             } else {
+                self.hideLoading()
                 let alert = UIAlertController(title: "Warning!", message: upVoteResponse?.message, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
@@ -39,12 +40,14 @@ class ListViewController: BaseViewController,UICollectionViewDelegate,UICollecti
             if (downVoteResponse?.success)! {
                 refresh()
             } else {
+                self.hideLoading()
                 let alert = UIAlertController(title: "Warning!", message: downVoteResponse?.message, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
             }
         }
     }
+    
     var districtsList:[District] = []
     var filterTrafficList:[EventDetailsObject] = []
     var selectedDistrict: District?
@@ -265,7 +268,7 @@ class ListViewController: BaseViewController,UICollectionViewDelegate,UICollecti
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "ListViewTableViewCell") as! ListViewTableViewCell
-        
+        cell.delegate = self
         cell.populate(trafficInfo: filterTrafficList[indexPath.row])
         return cell
     }
@@ -290,7 +293,6 @@ class ListViewController: BaseViewController,UICollectionViewDelegate,UICollecti
         }
     }
     
-    
     func refresh() {
         isRefreshing = true
         loadDB()
@@ -306,7 +308,6 @@ class ListViewController: BaseViewController,UICollectionViewDelegate,UICollecti
                 districtsList.append(x)
             }
         }
-        
     }
     
     func refreshFilterList(index: Int) {
@@ -322,13 +323,10 @@ class ListViewController: BaseViewController,UICollectionViewDelegate,UICollecti
                     filterTrafficList.append(x)
                 }
             }
-            
         }
         tableView.reloadData()
     }
-    
-    
-    
+
     func filter() {
         for i in 0...trafficList.count - 1 {
             let calendar = NSCalendar.current
@@ -356,14 +354,17 @@ class ListViewController: BaseViewController,UICollectionViewDelegate,UICollecti
 extension ListViewController: VotingDelegate {
     
     func vote(isUp: Bool, id: String) {
+        self.showLoading()
         let token = UserDefaults.standard.string(forKey: "Token")
+        let userID = UserDefaults.standard.string(forKey: "UserID")
+        let param = ["userId": userID!]
         if isUp {
-            ServiceHelpers.upvoteEvent(eventID: id, token: token!){(response) in
+            ServiceHelpers.upvoteEvent(param: param, eventID: id, token: token!){(response) in
                 self.upVoteResponse = response
                 
             }
         } else {
-            ServiceHelpers.downvoteEvent(eventID: id, token: token!){(response) in
+            ServiceHelpers.downvoteEvent(param: param, eventID: id, token: token!){(response) in
                 self.downVoteResponse = response
             }
         }

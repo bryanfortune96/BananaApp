@@ -22,6 +22,7 @@ target 'Banana' do
   pod 'SCLAlertView'
   pod 'IQKeyboardManager'
   pod 'NVActivityIndicatorView'
+  pod 'SDWebImage'
   target 'BananaTests' do
     inherit! :search_paths
     # Pods for testing

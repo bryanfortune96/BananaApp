@@ -11,6 +11,7 @@ import ObjectMapper
 class BaseResponse: NSObject, Mappable {
     var success: Bool?
     var message: String?
+    var code: Int?
     //var token: String?
     public required init?(map: Map) {
     }
@@ -21,5 +22,6 @@ class BaseResponse: NSObject, Mappable {
     func mapping(map: Map) {
         success <- map["success"]
         message   <- map["message"]
+        code <- map["code"]
     }
 }
