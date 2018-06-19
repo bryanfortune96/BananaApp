@@ -11,12 +11,16 @@ import MarqueeLabel
 import GoogleMaps
 import Alamofire
 
+let SCREEN_WIDTH = UIScreen.main.bounds.width
+let SCREEN_HEIGHT = UIScreen.main.bounds.height
+
 class SubmitDetailsViewController: BaseViewController,UITableViewDelegate,UITableViewDataSource,UIPickerViewDelegate,UIPickerViewDataSource {
     
-    @IBOutlet weak var imageBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var imageHeightContraint: NSLayoutConstraint!
+    @IBOutlet weak var imageCoverViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var imageBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var cameraButt: UIButton!
+    
     @IBOutlet weak var topView: UIView!
     @IBOutlet weak var distanceLb: UILabel!
     @IBOutlet weak var middleView: UIView!
@@ -36,10 +40,10 @@ class SubmitDetailsViewController: BaseViewController,UITableViewDelegate,UITabl
     var end_coor: CLLocationCoordinate2D?
     var distance = ""
     var placeName = ""
-    var titleElements = ["Lưu lượng xe","Xe máy","Xe hơi","Mưa","Tai nạn","Ngập lụt","CSGT","Khuyến cáo"]
-    var contentList = ["Đông xe","Di chuyển chậm","Di chuyển chậm","Không","Không","Không","Không","Không nên di chuyển"]
-    var submitList = [3,1,1,0,0,0,0,0]
-    var isTouched = [0,0,0,0,0,0,0,0]
+    var titleElements = ["Tình trạng","Sau 5 phút","Vận tốc xe","Mưa","Tai nạn","Ngập lụt"]
+    var contentList = ["Đông xe","Đông xe","Chậm","Không","Không","Không"]
+    var submitList = [2,2,2,0,0,0]
+    var isTouched = [0,0,0,0,0,0]
     var submitData: Dictionary<String,Any> = [:]
     var submitInfo = TrafficInfo()
     var response: PostEventResponse?
@@ -63,7 +67,7 @@ class SubmitDetailsViewController: BaseViewController,UITableViewDelegate,UITabl
         didSet{
             let token = UserDefaults.standard.string(forKey: "Token")
             if trafficImage != nil {
-                self.postImage(data: UIImageJPEGRepresentation(trafficImage!, 1)!, eventID: (submitResponse?.id)!, token: token!)
+                self.postImage(data: UIImageJPEGRepresentation(trafficImage!, 0.08)!, eventID: (submitResponse?.id)!, token: token!)
             } else {
                 self.hideLoading()
                 NotificationCenter.default.post(name: NSNotification.Name("CloseSubmitView"), object: nil)
@@ -83,8 +87,8 @@ class SubmitDetailsViewController: BaseViewController,UITableViewDelegate,UITabl
 
     func initialize()
     {
-        imageBottomConstraint.constant =  SCREEN_HEIGHT
-        imageHeightContraint.constant = SCREEN_HEIGHT - 200
+        imageBottomConstraint.constant = -SCREEN_HEIGHT
+        //imageCoverViewHeightConstraint.constant = SCREEN_HEIGHT - 300
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -101,7 +105,8 @@ class SubmitDetailsViewController: BaseViewController,UITableViewDelegate,UITabl
         shadowView.layer.cornerRadius = 10
         pickerUIView.layer.cornerRadius = 10
         topView.layer.cornerRadius = 10
-        
+        imageView.layer.cornerRadius = 15
+        imageView.clipsToBounds = true
         
         // shadow
         shadowView.layer.shadowColor = UIColor.black.cgColor
@@ -182,36 +187,11 @@ class SubmitDetailsViewController: BaseViewController,UITableViewDelegate,UITabl
     }
     
     func handleCameraOpening() {
-        let alert = UIAlertController(title: "", message: nil, preferredStyle: .actionSheet)
-        
-        // Change Message With Color and Font
-        let alertMsg  = "Hình ảnh mô tả"
-        var myMutableString = NSMutableAttributedString()
-        myMutableString = NSMutableAttributedString(string: alertMsg as String, attributes: [NSFontAttributeName: UIFont.boldSystemFont(ofSize: 18)])
-        myMutableString.addAttribute(NSForegroundColorAttributeName, value: UIColor(white: 34.0 / 255.0, alpha: 1.0), range: NSRange(location: 0, length: alertMsg.characters.count))
-        alert.setValue(myMutableString, forKey: "attributedTitle")
-        
-        alert.addAction(UIAlertAction(title: "Chụp hình", style: .default, handler: {
-            action in
-            let imagePicker = UIImagePickerController()
-            imagePicker.delegate = self
-            imagePicker.sourceType = .camera
-            imagePicker.allowsEditing = false
-            self.present(imagePicker, animated: true, completion: nil)
-        }))
-        
-        alert.addAction(UIAlertAction(title: "Thư viện", style: .default, handler: {
-            action in
-            let imagePicker = UIImagePickerController()
-            imagePicker.delegate = self
-            
-            imagePicker.sourceType = .photoLibrary
-            imagePicker.allowsEditing = false
-            self.present(imagePicker, animated: true, completion: nil)
-        }))
-        
-        alert.addAction(UIAlertAction(title: "Hủy", style: .cancel, handler: nil))
-        self.present(alert, animated: true, completion: nil)
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = .camera
+        imagePicker.allowsEditing = false
+        self.present(imagePicker, animated: true, completion: nil)
     }
     
     @IBAction func cameraPressed(_ sender: Any) {
@@ -226,6 +206,7 @@ class SubmitDetailsViewController: BaseViewController,UITableViewDelegate,UITabl
             handleCameraOpening()
         }
     }
+    
     @IBAction func deleteImagePressed(_ sender: Any) {
         trafficImage = nil
         didChooseImage = !didChooseImage
@@ -238,12 +219,10 @@ class SubmitDetailsViewController: BaseViewController,UITableViewDelegate,UITabl
         getDistrict()
         let token = UserDefaults.standard.string(forKey: "Token")
         let userID = UserDefaults.standard.string(forKey: "UserID")
-        submitData = ["userId": userID! as Any,"name": placeName,"eventType":0,"latitude": Float((start_coor?.latitude)!),"longitude": Float((start_coor?.longitude)!) as Any,"end_latitude": Float((end_coor?.latitude)!) as Any,"end_longitude": Float((end_coor?.longitude)!) as Any,"density": submitList[0],"motorbike_speed": submitList[1],"car_speed": submitList[2],"has_rain": DataMgr.shared.booleanStyle[submitList[3]], "has_accident": DataMgr.shared.booleanStyle[submitList[4]], "has_flood": DataMgr.shared.booleanStyle[submitList[5]],"should_travel":DataMgr.shared.booleanStyle[submitList[6]],"district": district! as Any]
+        submitData = ["userId": userID! as Any,"name": placeName,"eventType":0,"latitude": Float((start_coor?.latitude)!),"longitude": Float((start_coor?.longitude)!) as Any,"end_latitude": Float((end_coor?.latitude)!) as Any,"end_longitude": Float((end_coor?.longitude)!) as Any,"density": submitList[0],"motorbike_speed": submitList[2],"next_density": submitList[1],"has_rain": DataMgr.shared.booleanStyle[submitList[3]], "has_accident": DataMgr.shared.booleanStyle[submitList[4]], "has_flood": DataMgr.shared.booleanStyle[submitList[5]],"district": district! as Any]
         ServiceHelpers.postEvent(param: submitData, token: (token)!) { (response) in
             self.response = response
-
         }
-
     }
     
     @IBAction func cancelPressed(_ sender: Any) {
@@ -277,7 +256,7 @@ class SubmitDetailsViewController: BaseViewController,UITableViewDelegate,UITabl
         self.blackView.isHidden = true
         if isEditingImage {
             isEditingImage = !isEditingImage
-            imageBottomConstraint.constant = SCREEN_HEIGHT
+            imageBottomConstraint.constant = -SCREEN_HEIGHT
             UIView.animate(withDuration: 0.5, animations: {
                 self.view.layoutIfNeeded()
             })
@@ -288,7 +267,12 @@ class SubmitDetailsViewController: BaseViewController,UITableViewDelegate,UITabl
             })
         }
     }
+    
+    @IBAction func chooseAnotherPressed(_ sender: Any) {
+        handleCameraOpening()
+    }
 
+    
     ////TablewView functions
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50
@@ -307,7 +291,7 @@ class SubmitDetailsViewController: BaseViewController,UITableViewDelegate,UITabl
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.row {
-        case 0:
+        case 0,1:
             pickerList = DataMgr.shared.density
             currentIndexPath =  indexPath.row
             pickerView.reloadAllComponents()
@@ -318,7 +302,7 @@ class SubmitDetailsViewController: BaseViewController,UITableViewDelegate,UITabl
             else{
                 pickerView.selectRow(submitList[indexPath.row], inComponent: 0, animated: false)
             }
-        case 1,2:
+        case 2:
             pickerList = DataMgr.shared.movability
             currentIndexPath =  indexPath.row
             pickerView.reloadAllComponents()
@@ -336,17 +320,6 @@ class SubmitDetailsViewController: BaseViewController,UITableViewDelegate,UITabl
             if isTouched[indexPath.row] == 0
             {
                 pickerView.selectRow(0, inComponent: 0, animated: false)
-            }
-            else{
-                pickerView.selectRow(submitList[indexPath.row], inComponent: 0, animated: false)
-            }
-        case 7:
-            pickerList = DataMgr.shared.recommendation
-            currentIndexPath =  indexPath.row
-            pickerView.reloadAllComponents()
-            if isTouched[indexPath.row] == 0
-            {
-                pickerView.selectRow(1, inComponent: 0, animated: false)
             }
             else{
                 pickerView.selectRow(submitList[indexPath.row], inComponent: 0, animated: false)

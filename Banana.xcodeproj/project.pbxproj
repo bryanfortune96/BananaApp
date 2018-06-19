@@ -12,8 +12,6 @@
 		2110300D1F6298F00083F701 /* BananaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2110300C1F6298F00083F701 /* BananaUITests.swift */; };
 		211030201F6386F50083F701 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2110301E1F6386F50083F701 /* HomeViewController.swift */; };
 		211030211F6386F50083F701 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2110301F1F6386F50083F701 /* HomeViewController.xib */; };
-		211030241F63870C0083F701 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211030221F63870C0083F701 /* ListViewController.swift */; };
-		211030251F63870C0083F701 /* ListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 211030231F63870C0083F701 /* ListViewController.xib */; };
 		2110302B1F6389290083F701 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2110302A1F6389290083F701 /* BaseViewController.swift */; };
 		2110302D1F63ED6D0083F701 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2110302C1F63ED6D0083F701 /* Assets.xcassets */; };
 		211030311F6400600083F701 /* RankViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2110302F1F6400600083F701 /* RankViewController.swift */; };
@@ -28,15 +26,7 @@
 		211DCEEE1F76220700CB91A0 /* SubmitDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 211DCEEC1F76220700CB91A0 /* SubmitDetailsViewController.xib */; };
 		211E491E1F80B66F005B45F0 /* RewardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211E491C1F80B66F005B45F0 /* RewardViewController.swift */; };
 		211E491F1F80B66F005B45F0 /* RewardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 211E491D1F80B66F005B45F0 /* RewardViewController.xib */; };
-		212DEFDB1F7519EC00976016 /* TrafficDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212DEFD91F7519EC00976016 /* TrafficDetailsViewController.swift */; };
-		212DEFDC1F7519EC00976016 /* TrafficDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 212DEFDA1F7519EC00976016 /* TrafficDetailsViewController.xib */; };
-		212DEFE01F75269A00976016 /* TrafficDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212DEFDE1F75269A00976016 /* TrafficDetailsTableViewCell.swift */; };
-		212DEFE11F75269A00976016 /* TrafficDetailsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 212DEFDF1F75269A00976016 /* TrafficDetailsTableViewCell.xib */; };
 		212EBCE91F69871800970E29 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212EBCE81F69871800970E29 /* Models.swift */; };
-		212EBCED1F6AD36200970E29 /* ListViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212EBCEB1F6AD36200970E29 /* ListViewTableViewCell.swift */; };
-		212EBCEE1F6AD36200970E29 /* ListViewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 212EBCEC1F6AD36200970E29 /* ListViewTableViewCell.xib */; };
-		213045861F6EC38B005627FF /* ListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213045841F6EC38B005627FF /* ListCollectionViewCell.swift */; };
-		213045871F6EC38B005627FF /* ListCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 213045851F6EC38B005627FF /* ListCollectionViewCell.xib */; };
 		2141B8A91F7FA3310085C7D3 /* HomeViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2141B8A71F7FA3310085C7D3 /* HomeViewTableViewCell.swift */; };
 		2141B8AA1F7FA3310085C7D3 /* HomeViewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2141B8A81F7FA3310085C7D3 /* HomeViewTableViewCell.xib */; };
 		2141B8AF1F7FE92E0085C7D3 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2141B8AD1F7FE92E0085C7D3 /* NotificationViewController.swift */; };
@@ -45,13 +35,15 @@
 		2141B8B51F7FEE180085C7D3 /* FeedbackViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2141B8B31F7FEE180085C7D3 /* FeedbackViewController.xib */; };
 		2141B8B91F80A5810085C7D3 /* RankViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2141B8B71F80A5810085C7D3 /* RankViewTableViewCell.swift */; };
 		2141B8BA1F80A5810085C7D3 /* RankViewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2141B8B81F80A5810085C7D3 /* RankViewTableViewCell.xib */; };
-		2157D8B81FA37EA400388CC8 /* MapTrafficDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2157D8B61FA37EA400388CC8 /* MapTrafficDetailsViewController.swift */; };
-		2157D8B91FA37EA400388CC8 /* MapTrafficDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2157D8B71FA37EA400388CC8 /* MapTrafficDetailsViewController.xib */; };
 		2157D8BD1FA3905D00388CC8 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2157D8BB1FA3905D00388CC8 /* AccountViewController.swift */; };
 		2157D8BE1FA3905D00388CC8 /* AccountViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2157D8BC1FA3905D00388CC8 /* AccountViewController.xib */; };
+		215A392D20CD33AE0093983C /* CustomInfoWindowUIView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 215A392B20CD33AD0093983C /* CustomInfoWindowUIView.xib */; };
+		215A392E20CD33AE0093983C /* CustomInfoWindowUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215A392C20CD33AE0093983C /* CustomInfoWindowUIView.swift */; };
+		215A393220CD34010093983C /* Modal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215A393020CD34010093983C /* Modal.swift */; };
+		215A393320CD34010093983C /* CustomAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215A393120CD34010093983C /* CustomAlertView.swift */; };
+		215A393620CD7A350093983C /* ListCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 215A393420CD7A340093983C /* ListCollectionViewCell.xib */; };
+		215A393720CD7A350093983C /* ListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215A393520CD7A340093983C /* ListCollectionViewCell.swift */; };
 		215EA05320204E7E00C6315E /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215EA05220204E7E00C6315E /* Extension.swift */; };
-		21664280204543020045B146 /* TrafficImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2166427E204543020045B146 /* TrafficImageViewController.swift */; };
-		21664281204543020045B146 /* TrafficImageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2166427F204543020045B146 /* TrafficImageViewController.xib */; };
 		217EAA901F8412530098CDEF /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 217EAA8F1F8412530098CDEF /* Launch Screen.storyboard */; };
 		217EAA951F86000A0098CDEF /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217EAA931F86000A0098CDEF /* FavoriteViewController.swift */; };
 		217EAA961F86000A0098CDEF /* FavoriteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 217EAA941F86000A0098CDEF /* FavoriteViewController.xib */; };
@@ -110,8 +102,6 @@
 		2110300E1F6298F00083F701 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2110301E1F6386F50083F701 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeViewController.swift; path = ViewControllers/HomeViewController/HomeViewController.swift; sourceTree = "<group>"; };
 		2110301F1F6386F50083F701 /* HomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HomeViewController.xib; path = ViewControllers/HomeViewController/HomeViewController.xib; sourceTree = "<group>"; };
-		211030221F63870C0083F701 /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListViewController.swift; path = ViewControllers/ListViewController/ListViewController.swift; sourceTree = "<group>"; };
-		211030231F63870C0083F701 /* ListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ListViewController.xib; path = ViewControllers/ListViewController/ListViewController.xib; sourceTree = "<group>"; };
 		2110302A1F6389290083F701 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		2110302C1F63ED6D0083F701 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2110302F1F6400600083F701 /* RankViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RankViewController.swift; path = ViewControllers/RankViewController/RankViewController.swift; sourceTree = "<group>"; };
@@ -126,15 +116,7 @@
 		211DCEEC1F76220700CB91A0 /* SubmitDetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SubmitDetailsViewController.xib; path = ViewControllers/SubmitViewController/SubmitDetailsViewController.xib; sourceTree = "<group>"; };
 		211E491C1F80B66F005B45F0 /* RewardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RewardViewController.swift; path = Menu/RewardViewController/RewardViewController.swift; sourceTree = "<group>"; };
 		211E491D1F80B66F005B45F0 /* RewardViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = RewardViewController.xib; path = Menu/RewardViewController/RewardViewController.xib; sourceTree = "<group>"; };
-		212DEFD91F7519EC00976016 /* TrafficDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TrafficDetailsViewController.swift; path = ViewControllers/TrafficDetailsViewController/TrafficDetailsViewController.swift; sourceTree = "<group>"; };
-		212DEFDA1F7519EC00976016 /* TrafficDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TrafficDetailsViewController.xib; path = ViewControllers/TrafficDetailsViewController/TrafficDetailsViewController.xib; sourceTree = "<group>"; };
-		212DEFDE1F75269A00976016 /* TrafficDetailsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TrafficDetailsTableViewCell.swift; path = ViewControllers/TrafficDetailsViewController/Cell/TrafficDetailsTableViewCell.swift; sourceTree = "<group>"; };
-		212DEFDF1F75269A00976016 /* TrafficDetailsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TrafficDetailsTableViewCell.xib; path = ViewControllers/TrafficDetailsViewController/Cell/TrafficDetailsTableViewCell.xib; sourceTree = "<group>"; };
 		212EBCE81F69871800970E29 /* Models.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Models.swift; path = Model/Models.swift; sourceTree = "<group>"; };
-		212EBCEB1F6AD36200970E29 /* ListViewTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListViewTableViewCell.swift; path = ViewControllers/ListViewController/Cell/ListViewTableViewCell.swift; sourceTree = "<group>"; };
-		212EBCEC1F6AD36200970E29 /* ListViewTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ListViewTableViewCell.xib; path = ViewControllers/ListViewController/Cell/ListViewTableViewCell.xib; sourceTree = "<group>"; };
-		213045841F6EC38B005627FF /* ListCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListCollectionViewCell.swift; sourceTree = "<group>"; };
-		213045851F6EC38B005627FF /* ListCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListCollectionViewCell.xib; sourceTree = "<group>"; };
 		2141B8A71F7FA3310085C7D3 /* HomeViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomeViewTableViewCell.swift; path = ViewControllers/HomeViewController/Cell/HomeViewTableViewCell.swift; sourceTree = "<group>"; };
 		2141B8A81F7FA3310085C7D3 /* HomeViewTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = HomeViewTableViewCell.xib; path = ViewControllers/HomeViewController/Cell/HomeViewTableViewCell.xib; sourceTree = "<group>"; };
 		2141B8AD1F7FE92E0085C7D3 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NotificationViewController.swift; path = Menu/NotificationViewController/NotificationViewController.swift; sourceTree = "<group>"; };
@@ -143,13 +125,15 @@
 		2141B8B31F7FEE180085C7D3 /* FeedbackViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = FeedbackViewController.xib; path = Menu/FeedbackViewController/FeedbackViewController.xib; sourceTree = "<group>"; };
 		2141B8B71F80A5810085C7D3 /* RankViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RankViewTableViewCell.swift; path = ViewControllers/RankViewController/Cell/RankViewTableViewCell.swift; sourceTree = "<group>"; };
 		2141B8B81F80A5810085C7D3 /* RankViewTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = RankViewTableViewCell.xib; path = ViewControllers/RankViewController/Cell/RankViewTableViewCell.xib; sourceTree = "<group>"; };
-		2157D8B61FA37EA400388CC8 /* MapTrafficDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MapTrafficDetailsViewController.swift; path = ViewControllers/TrafficDetailsViewController/MapTrafficDetailsViewController.swift; sourceTree = "<group>"; };
-		2157D8B71FA37EA400388CC8 /* MapTrafficDetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MapTrafficDetailsViewController.xib; path = ViewControllers/TrafficDetailsViewController/MapTrafficDetailsViewController.xib; sourceTree = "<group>"; };
 		2157D8BB1FA3905D00388CC8 /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AccountViewController.swift; path = ViewControllers/AccountViewController/AccountViewController.swift; sourceTree = "<group>"; };
 		2157D8BC1FA3905D00388CC8 /* AccountViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = AccountViewController.xib; path = ViewControllers/AccountViewController/AccountViewController.xib; sourceTree = "<group>"; };
+		215A392B20CD33AD0093983C /* CustomInfoWindowUIView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomInfoWindowUIView.xib; sourceTree = "<group>"; };
+		215A392C20CD33AE0093983C /* CustomInfoWindowUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomInfoWindowUIView.swift; sourceTree = "<group>"; };
+		215A393020CD34010093983C /* Modal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Modal.swift; sourceTree = "<group>"; };
+		215A393120CD34010093983C /* CustomAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAlertView.swift; sourceTree = "<group>"; };
+		215A393420CD7A340093983C /* ListCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ListCollectionViewCell.xib; path = ../../../LutApp/Lut/ListCollectionViewCell.xib; sourceTree = "<group>"; };
+		215A393520CD7A340093983C /* ListCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListCollectionViewCell.swift; path = ../../../LutApp/Lut/ListCollectionViewCell.swift; sourceTree = "<group>"; };
 		215EA05220204E7E00C6315E /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Extension.swift; path = Shared/Extension.swift; sourceTree = "<group>"; };
-		2166427E204543020045B146 /* TrafficImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TrafficImageViewController.swift; path = ViewControllers/TrafficDetailsViewController/TrafficImageViewController.swift; sourceTree = "<group>"; };
-		2166427F204543020045B146 /* TrafficImageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TrafficImageViewController.xib; path = ViewControllers/TrafficDetailsViewController/TrafficImageViewController.xib; sourceTree = "<group>"; };
 		217EAA8F1F8412530098CDEF /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		217EAA931F86000A0098CDEF /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FavoriteViewController.swift; path = Menu/FavoriteViewController/FavoriteViewController.swift; sourceTree = "<group>"; };
 		217EAA941F86000A0098CDEF /* FavoriteViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = FavoriteViewController.xib; path = Menu/FavoriteViewController/FavoriteViewController.xib; sourceTree = "<group>"; };
@@ -271,15 +255,15 @@
 		2110301A1F6386720083F701 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				215A393520CD7A340093983C /* ListCollectionViewCell.swift */,
+				215A393420CD7A340093983C /* ListCollectionViewCell.xib */,
 				2114B9BD1FBDAE7B00A950B0 /* UserInfoViewController */,
 				2157D8BA1FA3902E00388CC8 /* AccountViewController */,
 				21A5746F1F83CA4E006EA8B6 /* LoginViewController */,
 				2141B8AB1F7FE8070085C7D3 /* Menu */,
 				21CE91E51F7A1216003E26EB /* Cell */,
-				212DEFD81F7519A700976016 /* TrafficDetailsViewController */,
 				2110302E1F6400360083F701 /* RankViewController */,
 				2110301D1F6386990083F701 /* SubmitViewController */,
-				2110301C1F63868D0083F701 /* ListViewController */,
 				2110301B1F6386810083F701 /* HomeViewController */,
 				2110302A1F6389290083F701 /* BaseViewController.swift */,
 			);
@@ -289,21 +273,12 @@
 		2110301B1F6386810083F701 /* HomeViewController */ = {
 			isa = PBXGroup;
 			children = (
+				215A392F20CD34010093983C /* CustomAlertView */,
 				2141B8A61F7FA30D0085C7D3 /* Cell */,
 				2110301E1F6386F50083F701 /* HomeViewController.swift */,
 				2110301F1F6386F50083F701 /* HomeViewController.xib */,
 			);
 			name = HomeViewController;
-			sourceTree = "<group>";
-		};
-		2110301C1F63868D0083F701 /* ListViewController */ = {
-			isa = PBXGroup;
-			children = (
-				212EBCEA1F6AD30F00970E29 /* Cell */,
-				211030221F63870C0083F701 /* ListViewController.swift */,
-				211030231F63870C0083F701 /* ListViewController.xib */,
-			);
-			name = ListViewController;
 			sourceTree = "<group>";
 		};
 		2110301D1F6386990083F701 /* SubmitViewController */ = {
@@ -363,29 +338,6 @@
 			name = RewardViewController;
 			sourceTree = "<group>";
 		};
-		212DEFD81F7519A700976016 /* TrafficDetailsViewController */ = {
-			isa = PBXGroup;
-			children = (
-				212DEFDD1F75265B00976016 /* Cell */,
-				212DEFD91F7519EC00976016 /* TrafficDetailsViewController.swift */,
-				212DEFDA1F7519EC00976016 /* TrafficDetailsViewController.xib */,
-				2157D8B61FA37EA400388CC8 /* MapTrafficDetailsViewController.swift */,
-				2157D8B71FA37EA400388CC8 /* MapTrafficDetailsViewController.xib */,
-				2166427E204543020045B146 /* TrafficImageViewController.swift */,
-				2166427F204543020045B146 /* TrafficImageViewController.xib */,
-			);
-			name = TrafficDetailsViewController;
-			sourceTree = "<group>";
-		};
-		212DEFDD1F75265B00976016 /* Cell */ = {
-			isa = PBXGroup;
-			children = (
-				212DEFDE1F75269A00976016 /* TrafficDetailsTableViewCell.swift */,
-				212DEFDF1F75269A00976016 /* TrafficDetailsTableViewCell.xib */,
-			);
-			name = Cell;
-			sourceTree = "<group>";
-		};
 		212EBCE71F6986E100970E29 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -397,20 +349,11 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
-		212EBCEA1F6AD30F00970E29 /* Cell */ = {
-			isa = PBXGroup;
-			children = (
-				212EBCEB1F6AD36200970E29 /* ListViewTableViewCell.swift */,
-				212EBCEC1F6AD36200970E29 /* ListViewTableViewCell.xib */,
-				213045841F6EC38B005627FF /* ListCollectionViewCell.swift */,
-				213045851F6EC38B005627FF /* ListCollectionViewCell.xib */,
-			);
-			name = Cell;
-			sourceTree = "<group>";
-		};
 		2141B8A61F7FA30D0085C7D3 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				215A392C20CD33AE0093983C /* CustomInfoWindowUIView.swift */,
+				215A392B20CD33AD0093983C /* CustomInfoWindowUIView.xib */,
 				2141B8A71F7FA3310085C7D3 /* HomeViewTableViewCell.swift */,
 				2141B8A81F7FA3310085C7D3 /* HomeViewTableViewCell.xib */,
 			);
@@ -462,6 +405,15 @@
 				2157D8BC1FA3905D00388CC8 /* AccountViewController.xib */,
 			);
 			name = AccountViewController;
+			sourceTree = "<group>";
+		};
+		215A392F20CD34010093983C /* CustomAlertView */ = {
+			isa = PBXGroup;
+			children = (
+				215A393020CD34010093983C /* Modal.swift */,
+				215A393120CD34010093983C /* CustomAlertView.swift */,
+			);
+			path = CustomAlertView;
 			sourceTree = "<group>";
 		};
 		217EAA911F85FF510098CDEF /* FavoriteViewController */ = {
@@ -675,27 +627,22 @@
 			files = (
 				2141B8B01F7FE92E0085C7D3 /* NotificationViewController.xib in Resources */,
 				211030321F6400600083F701 /* RankViewController.xib in Resources */,
-				2157D8B91FA37EA400388CC8 /* MapTrafficDetailsViewController.xib in Resources */,
 				21A574731F83CB2C006EA8B6 /* LoginViewController.xib in Resources */,
-				211030251F63870C0083F701 /* ListViewController.xib in Resources */,
-				212DEFE11F75269A00976016 /* TrafficDetailsTableViewCell.xib in Resources */,
-				212DEFDC1F7519EC00976016 /* TrafficDetailsViewController.xib in Resources */,
-				212EBCEE1F6AD36200970E29 /* ListViewTableViewCell.xib in Resources */,
 				211030211F6386F50083F701 /* HomeViewController.xib in Resources */,
-				21664281204543020045B146 /* TrafficImageViewController.xib in Resources */,
 				211DCEEA1F75697B00CB91A0 /* SubmitDetailsTableViewCell.xib in Resources */,
 				211DCEEE1F76220700CB91A0 /* SubmitDetailsViewController.xib in Resources */,
 				21CE91E91F7A123B003E26EB /* BaseViewTableViewCell.xib in Resources */,
 				2141B8BA1F80A5810085C7D3 /* RankViewTableViewCell.xib in Resources */,
 				2141B8AA1F7FA3310085C7D3 /* HomeViewTableViewCell.xib in Resources */,
-				213045871F6EC38B005627FF /* ListCollectionViewCell.xib in Resources */,
 				2110302D1F63ED6D0083F701 /* Assets.xcassets in Resources */,
+				215A393620CD7A350093983C /* ListCollectionViewCell.xib in Resources */,
 				217EAA9B1F86012B0098CDEF /* FavoriteTableViewCell.xib in Resources */,
 				217EAA961F86000A0098CDEF /* FavoriteViewController.xib in Resources */,
 				2141B8B51F7FEE180085C7D3 /* FeedbackViewController.xib in Resources */,
 				217EAA901F8412530098CDEF /* Launch Screen.storyboard in Resources */,
 				211E491F1F80B66F005B45F0 /* RewardViewController.xib in Resources */,
 				2114B9C11FBDAE9E00A950B0 /* UserInfoViewController.xib in Resources */,
+				215A392D20CD33AE0093983C /* CustomInfoWindowUIView.xib in Resources */,
 				2157D8BE1FA3905D00388CC8 /* AccountViewController.xib in Resources */,
 				217EAAA71F88996E0098CDEF /* RegisterViewController.xib in Resources */,
 			);
@@ -828,6 +775,8 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
+				"${BUILT_PRODUCTS_DIR}/COSTouchVisualizer/COSTouchVisualizer.framework",
+				"${BUILT_PRODUCTS_DIR}/Cosmos/Cosmos.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManager/IQKeyboardManager.framework",
@@ -845,6 +794,8 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/COSTouchVisualizer.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cosmos.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManager.framework",
@@ -904,17 +855,17 @@
 			files = (
 				2157D8BD1FA3905D00388CC8 /* AccountViewController.swift in Sources */,
 				217EAAA61F88996E0098CDEF /* RegisterViewController.swift in Sources */,
+				215A393320CD34010093983C /* CustomAlertView.swift in Sources */,
 				211DCEE91F75697B00CB91A0 /* SubmitDetailsTableViewCell.swift in Sources */,
-				213045861F6EC38B005627FF /* ListCollectionViewCell.swift in Sources */,
-				212EBCED1F6AD36200970E29 /* ListViewTableViewCell.swift in Sources */,
 				21C4655D1F90761500682522 /* ApplicationAssembly.swift in Sources */,
 				21C465651F907DE700682522 /* Constant.swift in Sources */,
 				2141B8B41F7FEE180085C7D3 /* FeedbackViewController.swift in Sources */,
 				2141B8B91F80A5810085C7D3 /* RankViewTableViewCell.swift in Sources */,
-				21664280204543020045B146 /* TrafficImageViewController.swift in Sources */,
 				215EA05320204E7E00C6315E /* Extension.swift in Sources */,
 				211DCEED1F76220700CB91A0 /* SubmitDetailsViewController.swift in Sources */,
 				21102FED1F6298EF0083F701 /* AppDelegate.swift in Sources */,
+				215A392E20CD33AE0093983C /* CustomInfoWindowUIView.swift in Sources */,
+				215A393720CD7A350093983C /* ListCollectionViewCell.swift in Sources */,
 				21C4654C1F8F7AC200682522 /* BananaServiceProtocol.swift in Sources */,
 				21C465631F9076D100682522 /* ServiceHelpers.swift in Sources */,
 				211E491E1F80B66F005B45F0 /* RewardViewController.swift in Sources */,
@@ -925,16 +876,13 @@
 				21A574721F83CB2C006EA8B6 /* LoginViewController.swift in Sources */,
 				211030311F6400600083F701 /* RankViewController.swift in Sources */,
 				21C4654A1F8D1D0D00682522 /* BaseResponse.swift in Sources */,
-				212DEFDB1F7519EC00976016 /* TrafficDetailsViewController.swift in Sources */,
 				21C465481F8D1CCE00682522 /* ObjectMapper.swift in Sources */,
 				212EBCE91F69871800970E29 /* Models.swift in Sources */,
-				211030241F63870C0083F701 /* ListViewController.swift in Sources */,
-				212DEFE01F75269A00976016 /* TrafficDetailsTableViewCell.swift in Sources */,
 				211DCEE51F75626800CB91A0 /* Helper.swift in Sources */,
-				2157D8B81FA37EA400388CC8 /* MapTrafficDetailsViewController.swift in Sources */,
 				211030201F6386F50083F701 /* HomeViewController.swift in Sources */,
 				217EAA9A1F86012B0098CDEF /* FavoriteTableViewCell.swift in Sources */,
 				2141B8AF1F7FE92E0085C7D3 /* NotificationViewController.swift in Sources */,
+				215A393220CD34010093983C /* Modal.swift in Sources */,
 				2110302B1F6389290083F701 /* BaseViewController.swift in Sources */,
 				21E81FED20299896001083F7 /* FormDataServiceHelpers.swift in Sources */,
 				2141B8A91F7FA3310085C7D3 /* HomeViewTableViewCell.swift in Sources */,
@@ -1031,7 +979,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1081,7 +1029,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};

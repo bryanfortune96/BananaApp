@@ -22,7 +22,9 @@ target 'Banana' do
   pod 'SCLAlertView'
   pod 'IQKeyboardManager'
   pod 'NVActivityIndicatorView'
-  pod 'SDWebImage'
+  pod 'COSTouchVisualizer'
+  pod 'SDWebImage', '~> 3.7.1'
+  pod 'Cosmos', '~> 15.0'
   target 'BananaTests' do
     inherit! :search_paths
     # Pods for testing

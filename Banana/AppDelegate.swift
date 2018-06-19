@@ -2,9 +2,6 @@
 //  AppDelegate.swift
 //  Banana
 //
-//  Created by TQM on 9/8/17.
-//  Copyright © 2017 Minh Tran. All rights reserved.
-//
 
 import UIKit
 import RDVTabBarController
@@ -13,12 +10,25 @@ import GoogleMaps
 import GooglePlaces
 import MBProgressHUD
 import IQKeyboardManager
-
+import COSTouchVisualizer
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
-
-    var window: UIWindow?
+class AppDelegate: UIResponder, UIApplicationDelegate, COSTouchVisualizerWindowDelegate {
+    
+    lazy var window: UIWindow? = {
+        var customWindow = COSTouchVisualizerWindow(frame: UIScreen.main.bounds)
+        
+        customWindow.fillColor = UIColor.darkGray
+        customWindow.strokeColor = UIColor.darkGray
+        customWindow.touchAlpha = 0.4;
+        
+        customWindow.rippleFillColor = UIColor.clear
+        customWindow.rippleStrokeColor = UIColor.clear
+        customWindow.touchAlpha = 0.1;
+        
+        customWindow.touchVisualizerWindowDelegate = self
+        return customWindow
+    }()
     var viewcontroller : UIViewController?
     var tabHome : UINavigationController?
     var tabList : UINavigationController?
@@ -33,7 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
-
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         UserDefaults.standard.register(defaults: ["BitMask": 2])
@@ -45,14 +55,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UserDefaults.standard.register(defaults: ["UserName": ""])
         UserDefaults.standard.register(defaults: ["Phone": ""])
         UserDefaults.standard.register(defaults: ["Address": ""])
-
-
-        //IQKeyboardManager.shared().isEnabled = true
-
+        
+        IQKeyboardManager.shared().isEnabled = true
+        
         
         GMSServices.provideAPIKey(Strings.mapAPIKey)
         GMSPlacesClient.provideAPIKey(Strings.placesAPIKey)
-        window = UIWindow.init(frame: UIScreen.main.bounds)
+        //        window = UIWindow.init(frame: UIScreen.main.bounds)
         loadVC()
         
         window?.rootViewController = self.viewcontroller
@@ -64,20 +73,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GADMobileAds.configure(withApplicationID: "ca-app-pub-1846184064173538~9738613200")
         
         // Override point for customization after application launch.
-
+        
         return true
     }
-
-
+    
+    func touchVisualizerWindowShouldAlwaysShowFingertip(_ window: COSTouchVisualizerWindow!) -> Bool {
+        return true
+    }
+    
     func loadVC(){
         let homeVC = HomeViewController()
         self.tabHome = UINavigationController.init(rootViewController: homeVC)
-        
-        let listVC = ListViewController()
-        self.tabList = UINavigationController.init(rootViewController: listVC)
-        
-//        let submitVC = SubmitViewController()
-//        self.tabSubmit = UINavigationController.init(rootViewController: submitVC)
         
         let rankVC = RankViewController()
         self.tabRank = UINavigationController.init(rootViewController: rankVC)
@@ -86,8 +92,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         self.viewcontroller = tabbarController
         
-        tabbarController.viewControllers = [homeVC,listVC,rankVC]
-       
+        tabbarController.viewControllers = [homeVC,rankVC]
+        
         customTabbar(tabbarController: tabbarController)
         
     }
@@ -102,19 +108,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let items = tabbarController.tabBar.items
         let homeTab = items?[0] as! RDVTabBarItem
         homeTab.itemHeight = 40
-        let listTab = items?[1] as! RDVTabBarItem
-        listTab.itemHeight = 40
+        //        let listTab = items?[1] as! RDVTabBarItem
+        //        listTab.itemHeight = 40
         
-        let rankTab = items?[2] as! RDVTabBarItem
+        let rankTab = items?[1] as! RDVTabBarItem
         rankTab.itemHeight = 40
-
+        
         
         homeTab.setFinishedSelectedImage(#imageLiteral(resourceName: "nav_homeSelected_icon"), withFinishedUnselectedImage: #imageLiteral(resourceName: "nav_homeUnselected_icon"))
-        listTab.setFinishedSelectedImage(#imageLiteral(resourceName: "nav_listSelected_icon"), withFinishedUnselectedImage: #imageLiteral(resourceName: "nav_listUnselected_icon"))
+        //listTab.setFinishedSelectedImage(#imageLiteral(resourceName: "nav_listSelected_icon"), withFinishedUnselectedImage: #imageLiteral(resourceName: "nav_listUnselected_icon"))
         rankTab.setFinishedSelectedImage(#imageLiteral(resourceName: "nav_rankSelected_icon"), withFinishedUnselectedImage: #imageLiteral(resourceName: "nav_rankUnselected_icon"))
-
         
-
+        
+        
     }
     
     func hideLoading(){
@@ -146,30 +152,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
-
+    
     
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
     }
-
+    
     func applicationDidEnterBackground(_ application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     }
-
+    
     func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
     }
-
+    
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     }
-
+    
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
-
+    
+    
 }
 
