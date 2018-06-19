@@ -16,7 +16,7 @@ protocol BananaServiceProtocol {
     func Register(param: Dictionary<String, Any>)  ->      BFTask<AnyObject>
     func UpdateUser(param: Dictionary<String, Any>,token: String,userID: String) ->      BFTask<AnyObject>
     func UpdatePassword(param: Dictionary<String, Any>,token: String,userID: String) ->      BFTask<AnyObject>
-    func UpvoteEvent(param: Dictionary<String, Any>, eventID: String, token: String)                ->      BFTask<AnyObject>
+    func UpvoteEvent(param: Dictionary<String, Any>)                ->      BFTask<AnyObject>
     func DownvoteEvent(param: Dictionary<String, Any>, eventID: String, token: String)              ->      BFTask<AnyObject>
     func GetLeaderboardAllTime()                ->      BFTask<AnyObject>
     func GetLeaderboardMonth(time: String)                ->      BFTask<AnyObject>

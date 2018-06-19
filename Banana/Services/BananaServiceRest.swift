@@ -38,8 +38,8 @@ class BananaServiceRest: BaseService, BananaServiceProtocol {
         return self.makeRequest(request: BananaRouter.UpdatePassword(param: param,token: token,userID: userID), returnType: UpdatePasswordResponse.self, isArrayResponse: false, showLoading: true).task
     }
     
-    func UpvoteEvent(param: Dictionary<String, Any>, eventID: String,token: String) -> BFTask<AnyObject> {
-        return self.makeRequest(request: BananaRouter.UpvoteEvent(param: param, eventID: eventID, token: token), returnType: UpvoteEventResponse.self, isArrayResponse: false, showLoading: true).task
+    func UpvoteEvent(param: Dictionary<String, Any>) -> BFTask<AnyObject> {
+        return self.makeRequest(request: BananaRouter.UpvoteEvent(param: param), returnType: UpvoteEventResponse.self, isArrayResponse: false, showLoading: true).task
     }
     
     func DownvoteEvent(param: Dictionary<String, Any>, eventID: String,token: String) -> BFTask<AnyObject> {

@@ -22,7 +22,7 @@ enum BananaRouter: URLRequestConvertible {
     case Register(param: Dictionary<String, Any>)
     case UpdateUser(param: Dictionary<String,Any>,token: String,userID: String)
     case UpdatePassword(param: Dictionary<String,Any>,token: String,userID: String)
-    case UpvoteEvent(param: Dictionary<String,Any>, eventID: String,token: String)
+    case UpvoteEvent(param: Dictionary<String,Any>)
     case DownvoteEvent(param: Dictionary<String,Any>, eventID: String,token: String)
     case GetLeaderboardAllTime()
     case GetLeaderboardMonth(time: String)
@@ -49,7 +49,7 @@ enum BananaRouter: URLRequestConvertible {
             return .put
         case .UpdatePassword(let param,let token,let userID):
             return .put
-        case .UpvoteEvent(let param, let eventID, let token):
+        case .UpvoteEvent(let param):
             return .post
         case .DownvoteEvent(let param, let eventID,let token):
             return .post
@@ -82,7 +82,8 @@ enum BananaRouter: URLRequestConvertible {
             return "user/\(userID)"
         case .UpdatePassword(let param, let token,let userID):
             return "user/password/\(userID)"
-        case .UpvoteEvent(let param, let eventID,let token):
+        case .UpvoteEvent(let param):
+            let eventID = param["eventId"] as! String
             return "events/upvote/\(eventID)"
         case .DownvoteEvent(let param, let eventID,let token):
             return "events/downvote/\(eventID)"
@@ -130,7 +131,8 @@ enum BananaRouter: URLRequestConvertible {
             break;
         case .Register(let param):
             urlRequest.httpBody = try JSONSerialization.data(withJSONObject: param, options: JSONSerialization.WritingOptions.prettyPrinted)
-        case .UpvoteEvent(let param, let eventID, let token):
+        case .UpvoteEvent(let param):
+            let input = ["userId": param["userId"], "score": param["score"]]
             urlRequest.httpBody = try JSONSerialization.data(withJSONObject: param, options: JSONSerialization.WritingOptions.prettyPrinted)
         case .DownvoteEvent(let param, let eventID, let token):
             urlRequest.httpBody = try JSONSerialization.data(withJSONObject: param, options: JSONSerialization.WritingOptions.prettyPrinted)
@@ -148,7 +150,8 @@ enum BananaRouter: URLRequestConvertible {
             break
         case .UpdateUser(let param,let token, let userID):
             urlRequest.setValue(token, forHTTPHeaderField: "Authorization")
-        case .UpvoteEvent(let param, let eventID, let token):
+        case .UpvoteEvent(let param):
+            let token = param["token"] as? String
             urlRequest.setValue(token, forHTTPHeaderField: "Authorization")
         case .DownvoteEvent(let param, let eventID, let token):
             urlRequest.setValue(token, forHTTPHeaderField: "Authorization")

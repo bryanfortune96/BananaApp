@@ -81,8 +81,8 @@ class ServiceHelpers: BaseServiceHelper {
         }
     }
     
-    static func upvoteEvent(param: Dictionary<String, Any>, eventID: String,token: String, callback: @escaping (_ result: UpvoteEventResponse) -> Void) {
-        let request = Helpers.getAssemblerResolver().resolve(BananaServiceProtocol.self)?.UpvoteEvent(param: param, eventID: eventID, token: token)
+    static func upvoteEvent(param: Dictionary<String, Any>, callback: @escaping (_ result: UpvoteEventResponse) -> Void) {
+        let request = Helpers.getAssemblerResolver().resolve(BananaServiceProtocol.self)?.UpvoteEvent(param: param)
         ServiceHelpers.handleBFTask(task: request!) { (data, err) in
             if err == nil {
                 let res = data.result as! UpvoteEventResponse

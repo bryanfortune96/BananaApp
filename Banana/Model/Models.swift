@@ -93,7 +93,7 @@ struct Media {
         guard let data = UIImageJPEGRepresentation(image, 0.7) else { return nil }
         self.data = data
     }
-    
+
 }
 
 

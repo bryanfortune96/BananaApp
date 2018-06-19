@@ -41,6 +41,8 @@ class HomeViewController: BaseViewController,UITableViewDelegate,UITableViewData
     @IBOutlet weak var menuView: UIView!
     @IBOutlet weak var blackView: UIView!
     @IBOutlet weak var mapView: GMSMapView!
+    var userID = ""
+    var token = ""
     var userName = ""
     var locationButt: UIButton!
     var userLongtitude = 0.0
@@ -49,10 +51,28 @@ class HomeViewController: BaseViewController,UITableViewDelegate,UITableViewData
     var placeLatitude = 0.0
     var placeTitle = ""
     var polylineArrays: [GMSPolyline] = []
+    var markerArray: [GMSMarker] = []
     var placeLocMarker: GMSMarker?
     var userLocMarker: GMSMarker?
     var userLocView: UIImageView?
     var placeLocView: UIImageView?
+    var upvoteResponse: UpvoteEventResponse? {
+        didSet {
+            self.hideLoading()
+            if (upvoteResponse?.success)! {
+                NotificationCenter.default.post(name: NSNotification.Name("UpdateScoreAfterRating"), object: nil, userInfo: ["score": (upvoteResponse?.data?.point?.points)!])
+                let alert = UIAlertController(title: "Message", message: "Thank you for your rating.", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            } else {
+                NotificationCenter.default.post(name: NSNotification.Name("UpdateScoreAfterRating"), object: nil, userInfo: ["score": -1.0])
+                let alert = UIAlertController(title: "Warning!", message: upvoteResponse?.message, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            }
+        }
+    }
+    
     var userInfo: UsersObject?
     {
         didSet{
@@ -156,6 +176,10 @@ class HomeViewController: BaseViewController,UITableViewDelegate,UITableViewData
                                                name: NSNotification.Name.UIApplicationWillEnterForeground,
                                                object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(afterSubmit), name: NSNotification.Name("CloseSubmitView"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(upVoteEvent(_:)), name: NSNotification.Name("VoteTrafficInfo"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(loadDB), name: NSNotification.Name("CloseDetailScreen"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(loadDB), name: NSNotification.Name("AfterUpdateAvatar"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(loadDB), name: NSNotification.Name("AfterUpdateFavorite"), object: nil)
         // Do any additional setup after loading the view.
     }
     
@@ -184,6 +208,14 @@ class HomeViewController: BaseViewController,UITableViewDelegate,UITableViewData
     func appWillEnterForeground()
     {
         checkForGPS()
+    }
+    
+    @objc func upVoteEvent(_ notification: NSNotification) {
+        let param = ["userId": userID, "token": token, "eventId": (notification.userInfo!["eventID"])!, "score": (notification.userInfo!["rating"])!]
+        self.showLoading()
+        ServiceHelpers.upvoteEvent(param: param){(response) in
+            self.upvoteResponse = response
+        }
     }
     
     func moveToPlace()
@@ -217,15 +249,15 @@ class HomeViewController: BaseViewController,UITableViewDelegate,UITableViewData
     
     func loadDB()
     {
-        let userID = UserDefaults.standard.string(forKey: "UserID")
-        let token = UserDefaults.standard.string(forKey: "Token")
+        userID = UserDefaults.standard.string(forKey: "UserID")!
+        token = UserDefaults.standard.string(forKey: "Token")!
         
         if userID != "" {
             self.showLoading()
-            ServiceHelpers.getUser(userID: userID!, token: token!){(response) in
+            ServiceHelpers.getUser(userID: userID, token: token){(response) in
                 self.userResponse = response
             }
-            ServiceHelpers.getEventList(userID: userID!){ (response) in
+            ServiceHelpers.getEventList(userID: userID){ (response) in
                 self.response = response
             }
         } else {
@@ -341,7 +373,7 @@ class HomeViewController: BaseViewController,UITableViewDelegate,UITableViewData
         for x in traffic {
             let source = CLLocationCoordinate2D.init(latitude: CLLocationDegrees(x.startLatitude!), longitude: CLLocationDegrees(x.startLongtitude!))
             let dest = CLLocationCoordinate2D.init(latitude: CLLocationDegrees(x.endLatitude!), longitude: CLLocationDegrees(x.endLongtitude!))
-            drawPolylineRoute(from: source, to: dest, density: x.density!)
+            drawPolylineRoute(from: source, to: dest, density: x.density!, eventId: x.id!)
         }
     }
     
@@ -370,7 +402,7 @@ class HomeViewController: BaseViewController,UITableViewDelegate,UITableViewData
     }
     
     // Pass your source and destination coordinates in this method.
-    func drawPolylineRoute(from source: CLLocationCoordinate2D, to destination: CLLocationCoordinate2D,density: Int) {
+    func drawPolylineRoute(from source: CLLocationCoordinate2D, to destination: CLLocationCoordinate2D,density: Int, eventId: String) {
         if self.stageOfSubmission != 0 {
             self.showLoading()
         }
@@ -413,6 +445,15 @@ class HomeViewController: BaseViewController,UITableViewDelegate,UITableViewData
                     //Call this method to draw path on map
                     self.showPath(polyStr: polyString!,density: density)
                     
+                    //set marker for the area
+                    if eventId != "-1" {
+                        let marker = GMSMarker()
+                        marker.position = source
+                        marker.title = eventId
+                        marker.map = self.mapView
+                        self.markerArray.append(marker)
+                    }
+                    
                     if self.stageOfSubmission != 0 {
                         //find distance in returned data to show
                         let legs = inside_routes?["legs"] as? [Any]
@@ -441,14 +482,10 @@ class HomeViewController: BaseViewController,UITableViewDelegate,UITableViewData
         case -1:
             polyline.strokeColor = UIColor.blue
         case 0:
-            polyline.strokeColor = UIColor.green
-        case 1:
-            polyline.strokeColor = UIColor.yellow
-        case 2:
             polyline.strokeColor = UIColor.orange
-        case 3:
+        case 1:
             polyline.strokeColor = UIColor.red
-        case 4:
+        case 2:
             polyline.strokeColor = UIColor.brown
         default:
             break
@@ -669,7 +706,7 @@ class HomeViewController: BaseViewController,UITableViewDelegate,UITableViewData
                 })
             })
         } else if stageOfSubmission == 3 {
-            drawPolylineRoute(from: sourceCoordinate!, to: destCoordinate!, density: -1)
+            drawPolylineRoute(from: sourceCoordinate!, to: destCoordinate!, density: -1, eventId: "-1")
             self.submitText.text = ""
             self.submitTextTopConstraint.constant = 10
             self.submitViewConstraint.constant = -150
@@ -691,6 +728,7 @@ class HomeViewController: BaseViewController,UITableViewDelegate,UITableViewData
             vc.distance = submitDistance
             vc.start_coor = sourceCoordinate
             vc.end_coor = destCoordinate
+            distanceLbConstraint.constant = -150
             self.present(vc, animated: true, completion: nil)
         }
     }
@@ -812,6 +850,17 @@ extension HomeViewController: GMSMapViewDelegate {
                 destCoordinate = coordinate
             }
         }
+    }
+    
+    func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
+        for y in traffic {
+            if marker.title == y.id {
+                let alert = CustomAlertView(trafficInfo: y)
+                alert.show(animated: true)
+            }
+        }
+        
+        return true
     }
 }
 

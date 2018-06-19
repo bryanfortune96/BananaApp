@@ -96,17 +96,17 @@ class GetUserResponse: BaseResponse {
 }
 
 class VoteResponseObject: NSObject, Mappable {
-    var eventID: String?
-    var downvotes: Int?
-    var upvotes: Int?
+    var point: PointsObject?
+    var eventId: String?
+    var authorId: String?
     
     required init?(map: Map) {
     }
     
     func mapping(map: Map) {
-        eventID <- map["event_id"]
-        downvotes <- map["downvotes"]
-        upvotes <- map["upvotes"]
+        point <- map["Point"]
+        authorId <- map["userId"]
+        eventId <- map["_id"]
     }
 }
 
@@ -122,7 +122,7 @@ class UsersObject: NSObject, Mappable {
     var nickname: String?
     var date: String?
     var queryPoint: Int?
-    var avatarImgPath: String?
+    var avatarImgPath: String? = ""
     
     required init?(map: Map) {
     }
@@ -130,7 +130,7 @@ class UsersObject: NSObject, Mappable {
     func mapping(map: Map) {
         id <- map["_id"]
         email <- map["email"]
-        point <- map["point_sum"]
+        point <- map["reputation"]
         level <- map["level"]
         phone <- map["phone"]
         address <- map["address"]
@@ -138,14 +138,13 @@ class UsersObject: NSObject, Mappable {
         date <- map["created_at"]
         queryPoint <- map["queryTimePoints"]
         avatarImgPath <- map["avatar"]
-        
     }
 }
 
 class EventDetailsObject: NSObject, Mappable {
     
     var name: String?
-    var userID: String?
+    var author: UsersObject?
     var startLatitude: Float?
     var startLongtitude: Float?
     var endLatitude: Float?
@@ -159,13 +158,15 @@ class EventDetailsObject: NSObject, Mappable {
     var carSpeed: Int?
     var bikeSpeed: Int?
     var density: Int?
+    var nextDensity: Int?
     var eventType: Int?
     var updatedAt: String?
     var createdAt: String?
     var point: PointsObject?
-    var isDownvoted: Bool?
     var isUpvoted: Bool?
+    var isDownvoted: Bool?
     var imagePaths: [String]?
+    var votedScore: Double?
     
     public required init?(map: Map) {
         
@@ -175,13 +176,8 @@ class EventDetailsObject: NSObject, Mappable {
     }
     
     func mapping(map: Map) {
-        
         name <- map["name"]
-        userID <- map["userId"]
-        startLatitude <- map["latitude"]
-        startLongtitude <- map["longitude"]
-        endLatitude <- map["end_latitude"]
-        endLongtitude <- map["end_longitude"]
+        author <- map["userId"]
         district <- map["district"]
         id <- map["_id"]
         isFlood <- map["has_flood"]
@@ -191,31 +187,37 @@ class EventDetailsObject: NSObject, Mappable {
         carSpeed <- map["car_speed"]
         bikeSpeed <- map["motorbike_speed"]
         density <- map["density"]
+        nextDensity <- map["next_density"]
         eventType <- map["eventType"]
         updatedAt <- map["updated_at"]
         createdAt <- map["created_at"]
         point <- map["Point"]
         isUpvoted <- map["isUpvoted"]
-        isDownvoted <- map["isDownvoted"]
         imagePaths <- map["mediaDatas"]
+        startLatitude <- map["latitude"]
+        votedScore <- map["votedScore"]
+        startLongtitude <- map["longitude"]
+        endLatitude <- map["end_latitude"]
+        endLongtitude <- map["end_longitude"]
         
     }
 }
 
 class PointsObject: NSObject,Mappable {
-    var downVotes: Int?
-    var upVotes: Int?
-    var isVerified: Bool?
+    var votedUserIDs: [String] = []
+    var points: Double?
     
     public required init?(map: Map) {
-        
     }
     
-     func mapping(map: Map) {
-        downVotes <- map["downvotes"]
-        upVotes <- map["upvotes"]
-        isVerified <- map["isVerified"]
+    public override init() {
     }
+    
+    func mapping(map: Map) {
+        points <- map["points"]
+        votedUserIDs <- map["VotedUsers"]
+    }
+    
 }
 
 class UserInfoObject: NSObject, Mappable {
